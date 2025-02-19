@@ -37,3 +37,23 @@ common:
   - name: GitHub Organization
     url: https://github.com/Theneo-Inc
     type: GitHubOrganization
+  - name: Theneo User Guide
+    description: 'null'
+    url: https://app.theneo.io/theneo/quickstart/theneo-quickstart-guide
+    type: Documentation
+  - name: Theneo User Guide
+    description: 'null'
+    url: https://app.theneo.io/theneo/quickstart/faq-2
+    type: FAQ
+  - name: Theneo Pricing | Flexible Plans for AI-Powered API Documentation
+    description: 'null'
+    url: https://www.theneo.io/pricing
+    type: Pricing
+  - name: Theneo Blog | API Tools, Docs, ML & Announcements
+    description: 'null'
+    url: https://www.theneo.io/blog
+    type: Blog
+  - name: Theneo Security | Robust Data Protection & Compliance Standards
+    description: 'null'
+    url: https://www.theneo.io/security
+    type: Security
