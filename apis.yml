@@ -7,13 +7,18 @@ apis:
     tags:
       - API
     humanURL: https://www.theneo.io/
+    baseURL: https://api.theneo.io
     properties:
       - url: https://www.theneo.io/
         type: Documentation
+      - url: openapi/theneo-api-openapi.yml
+        type: OpenAPI
     description: >-
-      Create stunning, low-maintenance API docs with Theneo. Designed for
-      developers, PMs, and technical writers. Join 12000+ companies to automate
-      changelogs and ...
+      The Theneo API provides programmatic access to manage API documentation
+      projects, workspaces, user access, and API specification imports on the
+      Theneo platform. Supports creating, publishing, and sharing API
+      documentation generated from OpenAPI, Swagger, Postman, and GraphQL
+      specifications.
 name: Theneo
 tags:
   - Documentation
@@ -23,7 +28,7 @@ type: Contract
 image: https://kinlane-productions.s3.amazonaws.com/apis-json/apis-json-logo.jpg
 access: 3rd-Party
 created: '2025-01-08'
-modified: '2025-02-19'
+modified: '2026-03-14'
 position: Consuming
 description: >-
   Beautiful, up-to-date docs without the effort. Automatically generate and

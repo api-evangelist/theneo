@@ -1,0 +1,616 @@
+openapi: 3.1.0
+info:
+  title: Theneo API
+  description: >-
+    The Theneo API provides programmatic access to manage API documentation
+    projects, workspaces, user access, and API specification imports on the
+    Theneo platform. Theneo is an AI-powered API documentation tool that
+    generates interactive docs from OpenAPI, Swagger, Postman, and GraphQL
+    specifications.
+  version: 1.0.0
+  contact:
+    name: Theneo
+    url: https://www.theneo.io/
+  license:
+    name: Proprietary
+    url: https://www.theneo.io/
+servers:
+  - url: https://api.theneo.io
+    description: Theneo API
+security:
+  - apiKey: []
+tags:
+  - name: Projects
+    description: Manage API documentation projects.
+  - name: Users
+    description: Manage user access to projects.
+  - name: Import
+    description: Import API specifications into projects.
+  - name: Workspaces
+    description: Manage workspaces.
+  - name: Publishing
+    description: Publish and preview documentation.
+paths:
+  /projects:
+    get:
+      operationId: getAllProjects
+      summary: Get all projects
+      description: >-
+        Retrieves a list of all API documentation projects accessible to the
+        authenticated user.
+      tags:
+        - Projects
+      responses:
+        '200':
+          description: A list of projects.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Project'
+        '401':
+          description: Unauthorized. Invalid or missing API key.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+    post:
+      operationId: addNewProject
+      summary: Add new project
+      description: >-
+        Creates a new API documentation project in the specified workspace.
+      tags:
+        - Projects
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateProjectRequest'
+      responses:
+        '201':
+          description: Project created successfully.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Project'
+        '400':
+          description: Bad request. Missing required parameters.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '401':
+          description: Unauthorized. Invalid or missing API key.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+  /projects/{projectId}:
+    get:
+      operationId: getProjectById
+      summary: Get project by ID
+      description: Retrieves details of a specific project by its unique identifier.
+      tags:
+        - Projects
+      parameters:
+        - name: projectId
+          in: path
+          required: true
+          description: The unique identifier of the project.
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Project details.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Project'
+        '401':
+          description: Unauthorized. Invalid or missing API key.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '404':
+          description: Project not found.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+    delete:
+      operationId: deleteProject
+      summary: Delete project
+      description: Deletes an API documentation project by its unique identifier.
+      tags:
+        - Projects
+      parameters:
+        - name: projectId
+          in: path
+          required: true
+          description: The unique identifier of the project.
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Project deleted successfully.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SuccessResponse'
+        '401':
+          description: Unauthorized. Invalid or missing API key.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '404':
+          description: Project not found.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+  /projects/{projectId}/users:
+    get:
+      operationId: getAccessibleUsers
+      summary: Get accessible users
+      description: >-
+        Retrieves the list of users who have access to the specified project.
+      tags:
+        - Users
+      parameters:
+        - name: projectId
+          in: path
+          required: true
+          description: The unique identifier of the project.
+          schema:
+            type: string
+      responses:
+        '200':
+          description: A list of users with access to the project.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ProjectUser'
+        '401':
+          description: Unauthorized. Invalid or missing API key.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '404':
+          description: Project not found.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+  /projects/{projectId}/share:
+    post:
+      operationId: shareProject
+      summary: Share a project
+      description: >-
+        Shares a project with specified users by granting them access.
+      tags:
+        - Users
+      parameters:
+        - name: projectId
+          in: path
+          required: true
+          description: The unique identifier of the project.
+          schema:
+            type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ShareProjectRequest'
+      responses:
+        '200':
+          description: Project shared successfully.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SuccessResponse'
+        '400':
+          description: Bad request. Invalid parameters.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '401':
+          description: Unauthorized. Invalid or missing API key.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '404':
+          description: Project not found.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+  /projects/{projectId}/users/{userId}:
+    patch:
+      operationId: changeUserAccess
+      summary: Change user access to a project
+      description: >-
+        Updates the access role of a user on a specific project.
+      tags:
+        - Users
+      parameters:
+        - name: projectId
+          in: path
+          required: true
+          description: The unique identifier of the project.
+          schema:
+            type: string
+        - name: userId
+          in: path
+          required: true
+          description: The unique identifier of the user.
+          schema:
+            type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ChangeUserAccessRequest'
+      responses:
+        '200':
+          description: User access updated successfully.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SuccessResponse'
+        '400':
+          description: Bad request. Invalid parameters.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '401':
+          description: Unauthorized. Invalid or missing API key.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '404':
+          description: Project or user not found.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+  /projects/{projectId}/import:
+    post:
+      operationId: importApiSpecification
+      summary: Import API specification
+      description: >-
+        Imports an API specification file into an existing project. Supports
+        OpenAPI/Swagger, Postman Collections, GraphQL, gRPC, SOAP/WSDL, and
+        AsyncAPI formats. The import can be done via file upload, URL, or text.
+      tags:
+        - Import
+      parameters:
+        - name: projectId
+          in: path
+          required: true
+          description: The unique identifier of the project.
+          schema:
+            type: string
+      requestBody:
+        required: true
+        content:
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/ImportSpecificationRequest'
+      responses:
+        '200':
+          description: API specification imported successfully.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SuccessResponse'
+        '400':
+          description: Bad request. Invalid specification or parameters.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '401':
+          description: Unauthorized. Invalid or missing API key.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '404':
+          description: Project not found.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+  /projects/{projectId}/publish:
+    post:
+      operationId: publishProject
+      summary: Publish project
+      description: >-
+        Publishes the API documentation for a project, making it publicly
+        accessible at its documentation URL.
+      tags:
+        - Publishing
+      parameters:
+        - name: projectId
+          in: path
+          required: true
+          description: The unique identifier of the project.
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Project published successfully.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PublishResponse'
+        '401':
+          description: Unauthorized. Invalid or missing API key.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '404':
+          description: Project not found.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+  /projects/{projectId}/preview:
+    get:
+      operationId: getPreviewProjectLink
+      summary: Get preview project link
+      description: >-
+        Returns a preview link for the project documentation before it is
+        published.
+      tags:
+        - Publishing
+      parameters:
+        - name: projectId
+          in: path
+          required: true
+          description: The unique identifier of the project.
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Preview link returned successfully.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PreviewLinkResponse'
+        '401':
+          description: Unauthorized. Invalid or missing API key.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '404':
+          description: Project not found.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+  /workspaces:
+    get:
+      operationId: listWorkspaces
+      summary: List workspaces
+      description: >-
+        Retrieves a list of all workspaces available to the authenticated user.
+      tags:
+        - Workspaces
+      responses:
+        '200':
+          description: A list of workspaces.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Workspace'
+        '401':
+          description: Unauthorized. Invalid or missing API key.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+components:
+  securitySchemes:
+    apiKey:
+      type: apiKey
+      name: Authorization
+      in: header
+      description: >-
+        API key for authentication. Generate from the Theneo dashboard. Can also
+        be set via the THENEO_API_KEY environment variable when using the CLI or
+        SDK.
+  schemas:
+    Project:
+      type: object
+      properties:
+        id:
+          type: string
+          description: The unique identifier of the project.
+        name:
+          type: string
+          description: The name of the project.
+        slug:
+          type: string
+          description: The URL-friendly slug of the project.
+        workspaceId:
+          type: string
+          description: The identifier of the workspace this project belongs to.
+        description:
+          type: string
+          description: A description of the project.
+        published:
+          type: boolean
+          description: Whether the project documentation is published.
+        createdAt:
+          type: string
+          format: date-time
+          description: The timestamp when the project was created.
+        updatedAt:
+          type: string
+          format: date-time
+          description: The timestamp when the project was last updated.
+    CreateProjectRequest:
+      type: object
+      required:
+        - name
+      properties:
+        name:
+          type: string
+          description: The name of the new project.
+        workspace:
+          type: string
+          description: >-
+            The workspace slug where the project should be created.
+        description:
+          type: string
+          description: A description for the project.
+        file:
+          type: string
+          description: Path to an API specification file to import during creation.
+        link:
+          type: string
+          format: uri
+          description: URL to an API specification file to import during creation.
+        sample:
+          type: boolean
+          description: Whether to create the project with sample data.
+        publish:
+          type: boolean
+          description: Whether to publish the project immediately after creation.
+    ShareProjectRequest:
+      type: object
+      required:
+        - email
+      properties:
+        email:
+          type: string
+          format: email
+          description: The email address of the user to share the project with.
+        role:
+          type: string
+          enum:
+            - viewer
+            - editor
+            - admin
+          description: The access role to assign to the user.
+          default: viewer
+    ChangeUserAccessRequest:
+      type: object
+      required:
+        - role
+      properties:
+        role:
+          type: string
+          enum:
+            - viewer
+            - editor
+            - admin
+          description: The new access role for the user.
+    ImportSpecificationRequest:
+      type: object
+      properties:
+        file:
+          type: string
+          format: binary
+          description: The API specification file to import.
+        link:
+          type: string
+          format: uri
+          description: URL to an API specification file to import.
+        importType:
+          type: string
+          enum:
+            - endpoints
+            - overwrite
+            - append
+            - merge
+          description: >-
+            The import strategy to use. "endpoints" imports only endpoints,
+            "overwrite" replaces the existing spec, "append" adds to the existing
+            spec, and "merge" merges with the existing spec.
+          default: overwrite
+    ProjectUser:
+      type: object
+      properties:
+        id:
+          type: string
+          description: The unique identifier of the user.
+        email:
+          type: string
+          format: email
+          description: The email address of the user.
+        role:
+          type: string
+          enum:
+            - viewer
+            - editor
+            - admin
+          description: The access role of the user on the project.
+        name:
+          type: string
+          description: The name of the user.
+    Workspace:
+      type: object
+      properties:
+        id:
+          type: string
+          description: The unique identifier of the workspace.
+        name:
+          type: string
+          description: The name of the workspace.
+        slug:
+          type: string
+          description: The URL-friendly slug of the workspace.
+    PublishResponse:
+      type: object
+      properties:
+        success:
+          type: boolean
+          description: Whether the publish was successful.
+        url:
+          type: string
+          format: uri
+          description: The public URL of the published documentation.
+    PreviewLinkResponse:
+      type: object
+      properties:
+        url:
+          type: string
+          format: uri
+          description: The preview URL for the project documentation.
+    SuccessResponse:
+      type: object
+      properties:
+        success:
+          type: boolean
+          description: Whether the operation was successful.
+        message:
+          type: string
+          description: A message describing the result.
+    Error:
+      type: object
+      properties:
+        error:
+          type: string
+          description: Error type or code.
+        message:
+          type: string
+          description: A human-readable error message.
