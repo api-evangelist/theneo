@@ -1,0 +1,22 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/api-evangelist/theneo/blob/main/json-schema/workspace.json",
+  "title": "Theneo Workspace",
+  "description": "A Workspace is an organizational unit on the Theneo platform that groups related API documentation projects together.",
+  "type": "object",
+  "required": ["name"],
+  "properties": {
+    "id": {
+      "type": "string",
+      "description": "The unique identifier of the workspace."
+    },
+    "name": {
+      "type": "string",
+      "description": "The name of the workspace."
+    },
+    "slug": {
+      "type": "string",
+      "description": "The URL-friendly slug of the workspace."
+    }
+  }
+}

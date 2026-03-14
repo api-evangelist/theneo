@@ -1,0 +1,44 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/api-evangelist/theneo/blob/main/json-schema/project.json",
+  "title": "Theneo Project",
+  "description": "A Project represents an API documentation project on the Theneo platform, containing imported API specifications and published documentation.",
+  "type": "object",
+  "required": ["name"],
+  "properties": {
+    "id": {
+      "type": "string",
+      "description": "The unique identifier of the project."
+    },
+    "name": {
+      "type": "string",
+      "description": "The name of the project."
+    },
+    "slug": {
+      "type": "string",
+      "description": "The URL-friendly slug of the project."
+    },
+    "workspaceId": {
+      "type": "string",
+      "description": "The identifier of the workspace this project belongs to."
+    },
+    "description": {
+      "type": "string",
+      "description": "A description of the project."
+    },
+    "published": {
+      "type": "boolean",
+      "description": "Whether the project documentation is published."
+    },
+    "createdAt": {
+      "type": "string",
+      "format": "date-time",
+      "description": "The timestamp when the project was created."
+    },
+    "updatedAt": {
+      "type": "string",
+      "format": "date-time",
+      "description": "The timestamp when the project was last updated."
+    }
+  }
+}

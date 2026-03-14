@@ -1,0 +1,28 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/api-evangelist/theneo/blob/main/json-schema/project-user.json",
+  "title": "Theneo Project User",
+  "description": "A Project User represents a user who has been granted access to a specific API documentation project on the Theneo platform, with a designated role.",
+  "type": "object",
+  "required": ["email", "role"],
+  "properties": {
+    "id": {
+      "type": "string",
+      "description": "The unique identifier of the user."
+    },
+    "email": {
+      "type": "string",
+      "format": "email",
+      "description": "The email address of the user."
+    },
+    "role": {
+      "type": "string",
+      "enum": ["viewer", "editor", "admin"],
+      "description": "The access role of the user on the project."
+    },
+    "name": {
+      "type": "string",
+      "description": "The name of the user."
+    }
+  }
+}

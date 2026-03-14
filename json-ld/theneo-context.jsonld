@@ -1,0 +1,39 @@
+{
+  "@context": {
+    "@vocab": "https://schema.org/",
+    "theneo": "https://www.theneo.io/docs/",
+    "Project": {
+      "@id": "theneo:project",
+      "@context": {
+        "id": "https://schema.org/identifier",
+        "name": "https://schema.org/name",
+        "slug": "https://schema.org/alternateName",
+        "workspaceId": {
+          "@id": "theneo:workspace",
+          "@type": "@id"
+        },
+        "description": "https://schema.org/description",
+        "published": "https://schema.org/status",
+        "createdAt": "https://schema.org/dateCreated",
+        "updatedAt": "https://schema.org/dateModified"
+      }
+    },
+    "Workspace": {
+      "@id": "theneo:workspace",
+      "@context": {
+        "id": "https://schema.org/identifier",
+        "name": "https://schema.org/name",
+        "slug": "https://schema.org/alternateName"
+      }
+    },
+    "ProjectUser": {
+      "@id": "theneo:project-user",
+      "@context": {
+        "id": "https://schema.org/identifier",
+        "email": "https://schema.org/email",
+        "role": "https://schema.org/roleName",
+        "name": "https://schema.org/name"
+      }
+    }
+  }
+}

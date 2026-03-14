@@ -13,6 +13,14 @@ apis:
         type: Documentation
       - url: openapi/theneo-api-openapi.yml
         type: OpenAPI
+      - url: json-schema/project.json
+        type: JSONSchema
+      - url: json-schema/workspace.json
+        type: JSONSchema
+      - url: json-schema/project-user.json
+        type: JSONSchema
+      - url: json-ld/theneo-context.jsonld
+        type: JSONLD
     description: >-
       The Theneo API provides programmatic access to manage API documentation
       projects, workspaces, user access, and API specification imports on the
