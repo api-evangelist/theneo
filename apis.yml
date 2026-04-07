@@ -4,8 +4,7 @@ url: >-
 apis:
   - aid: theneo:theneo
     name: Theneo
-    tags:
-      - API
+    tags: []
     humanURL: https://www.theneo.io/
     baseURL: https://api.theneo.io
     properties:
@@ -29,9 +28,9 @@ apis:
       specifications.
 name: Theneo
 tags:
+  - Change Logs
   - Documentation
   - Platform
-  - Change Logs
 type: Contract
 image: https://kinlane-productions.s3.amazonaws.com/apis-json/apis-json-logo.jpg
 access: 3rd-Party

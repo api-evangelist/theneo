@@ -20,16 +20,16 @@ servers:
 security:
   - apiKey: []
 tags:
-  - name: Projects
-    description: Manage API documentation projects.
-  - name: Users
-    description: Manage user access to projects.
   - name: Import
     description: Import API specifications into projects.
-  - name: Workspaces
-    description: Manage workspaces.
+  - name: Projects
+    description: Manage API documentation projects.
   - name: Publishing
     description: Publish and preview documentation.
+  - name: Users
+    description: Manage user access to projects.
+  - name: Workspaces
+    description: Manage workspaces.
 paths:
   /projects:
     get:
