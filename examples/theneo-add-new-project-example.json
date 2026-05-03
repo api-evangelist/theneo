@@ -1,0 +1,30 @@
+{
+  "request": {
+    "method": "POST",
+    "url": "https://api.theneo.io/projects",
+    "headers": {
+      "Authorization": "your-api-key-here",
+      "Content-Type": "application/json"
+    },
+    "body": {
+      "name": "Inventory API Documentation",
+      "workspace": "my-company",
+      "description": "API documentation for inventory management endpoints",
+      "link": "https://example.com/openapi.yml",
+      "publish": false
+    }
+  },
+  "response": {
+    "status": 201,
+    "body": {
+      "id": "proj_03HX5QK8Z3JVBM2N4P7R9T6WY",
+      "name": "Inventory API Documentation",
+      "slug": "inventory-api-documentation",
+      "workspaceId": "ws_01HX5QK8Z3JVBM2N4P7R9T6WZ",
+      "description": "API documentation for inventory management endpoints",
+      "published": false,
+      "createdAt": "2026-05-03T09:00:00Z",
+      "updatedAt": "2026-05-03T09:00:00Z"
+    }
+  }
+}

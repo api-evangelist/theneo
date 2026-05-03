@@ -1,0 +1,93 @@
+rules:
+  theneo-operation-ids-camel-case:
+    description: All operationIds must use camelCase.
+    message: "OperationId '{{value}}' must be camelCase."
+    severity: warn
+    given: "$.paths[*][*].operationId"
+    then:
+      function: pattern
+      functionOptions:
+        match: "^[a-z][a-zA-Z0-9]*$"
+
+  theneo-operation-summary-title-case:
+    description: All operation summaries must use Title Case.
+    message: "Operation summary '{{value}}' must use Title Case."
+    severity: warn
+    given: "$.paths[*][*].summary"
+    then:
+      function: pattern
+      functionOptions:
+        match: "^[A-Z][a-zA-Z0-9 ]*$"
+
+  theneo-path-kebab-case:
+    description: All path segments must use kebab-case.
+    message: "Path '{{path}}' must use kebab-case segments."
+    severity: warn
+    given: "$.paths[*]~"
+    then:
+      function: pattern
+      functionOptions:
+        match: "^(/[a-z0-9{][a-z0-9-{}]*)*$"
+
+  theneo-tags-required:
+    description: All operations must have at least one tag.
+    message: "Operation at '{{path}}' must have at least one tag."
+    severity: error
+    given: "$.paths[*][get,post,put,patch,delete]"
+    then:
+      field: tags
+      function: truthy
+
+  theneo-api-key-security:
+    description: All operations must declare the apiKey security scheme.
+    message: "Operation at '{{path}}' should declare apiKey security."
+    severity: warn
+    given: "$.paths[*][get,post,put,patch,delete]"
+    then:
+      function: schema
+      functionOptions:
+        schema:
+          type: object
+
+  theneo-responses-401-defined:
+    description: All operations must define a 401 response.
+    message: "Operation at '{{path}}' must define a 401 Unauthorized response."
+    severity: warn
+    given: "$.paths[*][get,post,put,patch,delete].responses"
+    then:
+      field: "401"
+      function: defined
+
+  theneo-request-body-content-type:
+    description: POST/PUT/PATCH request bodies must declare application/json or multipart/form-data content type.
+    message: "Request body at '{{path}}' must declare an explicit content type."
+    severity: warn
+    given: "$.paths[*][post,put,patch].requestBody.content"
+    then:
+      function: truthy
+
+  theneo-project-id-path-param:
+    description: Paths with {projectId} must document the parameter in-path with required=true.
+    message: "Parameter 'projectId' must be required=true in '{{path}}'."
+    severity: error
+    given: "$.paths[*][get,post,put,patch,delete].parameters[?(@.name == 'projectId')]"
+    then:
+      field: required
+      function: truthy
+
+  theneo-no-empty-descriptions:
+    description: All operations must have a non-empty description.
+    message: "Operation at '{{path}}' must have a description."
+    severity: warn
+    given: "$.paths[*][get,post,put,patch,delete]"
+    then:
+      field: description
+      function: truthy
+
+  theneo-response-schema-defined:
+    description: All 200/201 responses must define a schema.
+    message: "Response at '{{path}}' must define a content schema."
+    severity: warn
+    given: "$.paths[*][get,post,put,patch,delete].responses[200,201].content"
+    then:
+      function: truthy

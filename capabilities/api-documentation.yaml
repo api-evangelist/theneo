@@ -1,0 +1,299 @@
+naftiko: "1.0.0-alpha1"
+
+info:
+  label: "Theneo API Documentation Management"
+  description: "Workflow capability for managing API documentation projects on the Theneo platform. Covers project lifecycle from creation through import, collaboration, and publishing."
+  tags:
+    - API Documentation
+    - Developer Tools
+    - Documentation Platform
+    - AI
+    - Publishing
+    - Collaboration
+  created: "2026-05-03"
+  modified: "2026-05-03"
+
+binds:
+  - namespace: env
+    keys:
+      THENEO_API_KEY: THENEO_API_KEY
+
+capability:
+  consumes:
+    - import: theneo
+      location: ./shared/theneo-api.yaml
+
+  exposes:
+    - type: rest
+      port: 8080
+      namespace: theneo-docs-api
+      description: "Unified REST API for API documentation project management on Theneo."
+      resources:
+        - path: /v1/projects
+          name: projects
+          description: "List and create API documentation projects."
+          operations:
+            - method: GET
+              name: get-all-projects
+              description: "Retrieve all API documentation projects."
+              call: "theneo.get-all-projects"
+              outputParameters:
+                - type: array
+                  mapping: "$."
+            - method: POST
+              name: add-new-project
+              description: "Create a new API documentation project."
+              call: "theneo.add-new-project"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+
+        - path: /v1/projects/{projectId}
+          name: project
+          description: "Get or delete a specific project."
+          operations:
+            - method: GET
+              name: get-project
+              description: "Get details for a specific project."
+              call: "theneo.get-project-by-id"
+              with:
+                projectId: "rest.projectId"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+            - method: DELETE
+              name: delete-project
+              description: "Delete a specific project."
+              call: "theneo.delete-project"
+              with:
+                projectId: "rest.projectId"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+
+        - path: /v1/projects/{projectId}/users
+          name: project-users
+          description: "Manage users with access to a project."
+          operations:
+            - method: GET
+              name: get-project-users
+              description: "List users with access to a project."
+              call: "theneo.get-accessible-users"
+              with:
+                projectId: "rest.projectId"
+              outputParameters:
+                - type: array
+                  mapping: "$."
+
+        - path: /v1/projects/{projectId}/share
+          name: project-share
+          description: "Share a project with users."
+          operations:
+            - method: POST
+              name: share-project
+              description: "Share the project with a user by email."
+              call: "theneo.share-project"
+              with:
+                projectId: "rest.projectId"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+
+        - path: /v1/projects/{projectId}/users/{userId}
+          name: project-user-access
+          description: "Manage a user's access role on a project."
+          operations:
+            - method: PATCH
+              name: change-user-access
+              description: "Update a user's role on a project."
+              call: "theneo.change-user-access"
+              with:
+                projectId: "rest.projectId"
+                userId: "rest.userId"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+
+        - path: /v1/projects/{projectId}/import
+          name: project-import
+          description: "Import API specifications into projects."
+          operations:
+            - method: POST
+              name: import-api-spec
+              description: "Import an API specification into a project."
+              call: "theneo.import-api-specification"
+              with:
+                projectId: "rest.projectId"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+
+        - path: /v1/projects/{projectId}/publish
+          name: project-publish
+          description: "Publish project documentation."
+          operations:
+            - method: POST
+              name: publish-project
+              description: "Publish the project documentation publicly."
+              call: "theneo.publish-project"
+              with:
+                projectId: "rest.projectId"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+
+        - path: /v1/projects/{projectId}/preview
+          name: project-preview
+          description: "Preview project documentation."
+          operations:
+            - method: GET
+              name: get-preview-link
+              description: "Get a preview link for project docs before publishing."
+              call: "theneo.get-preview-project-link"
+              with:
+                projectId: "rest.projectId"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+
+        - path: /v1/workspaces
+          name: workspaces
+          description: "List workspaces."
+          operations:
+            - method: GET
+              name: list-workspaces
+              description: "List all workspaces for the authenticated user."
+              call: "theneo.list-workspaces"
+              outputParameters:
+                - type: array
+                  mapping: "$."
+
+    - type: mcp
+      port: 9090
+      namespace: theneo-docs-mcp
+      transport: http
+      description: "MCP server for AI-assisted API documentation management on Theneo."
+      tools:
+        - name: list-projects
+          description: "List all API documentation projects on Theneo."
+          hints:
+            readOnly: true
+            idempotent: true
+          call: "theneo.get-all-projects"
+          outputParameters:
+            - type: array
+              mapping: "$."
+
+        - name: create-project
+          description: "Create a new API documentation project on Theneo."
+          hints:
+            readOnly: false
+          call: "theneo.add-new-project"
+          outputParameters:
+            - type: object
+              mapping: "$."
+
+        - name: get-project
+          description: "Get details for a specific Theneo project."
+          hints:
+            readOnly: true
+            idempotent: true
+          call: "theneo.get-project-by-id"
+          with:
+            projectId: "tools.projectId"
+          outputParameters:
+            - type: object
+              mapping: "$."
+
+        - name: delete-project
+          description: "Delete a Theneo project by ID."
+          hints:
+            readOnly: false
+            destructive: true
+            idempotent: true
+          call: "theneo.delete-project"
+          with:
+            projectId: "tools.projectId"
+          outputParameters:
+            - type: object
+              mapping: "$."
+
+        - name: list-project-users
+          description: "List users with access to a Theneo project."
+          hints:
+            readOnly: true
+            idempotent: true
+          call: "theneo.get-accessible-users"
+          with:
+            projectId: "tools.projectId"
+          outputParameters:
+            - type: array
+              mapping: "$."
+
+        - name: share-project
+          description: "Share a Theneo project with a user by email address."
+          hints:
+            readOnly: false
+          call: "theneo.share-project"
+          with:
+            projectId: "tools.projectId"
+          outputParameters:
+            - type: object
+              mapping: "$."
+
+        - name: change-user-access
+          description: "Update a user's access role (viewer, editor, admin) on a Theneo project."
+          hints:
+            readOnly: false
+            idempotent: true
+          call: "theneo.change-user-access"
+          with:
+            projectId: "tools.projectId"
+            userId: "tools.userId"
+          outputParameters:
+            - type: object
+              mapping: "$."
+
+        - name: import-api-spec
+          description: "Import an API specification (OpenAPI, Postman, GraphQL, AsyncAPI) into a Theneo project."
+          hints:
+            readOnly: false
+          call: "theneo.import-api-specification"
+          with:
+            projectId: "tools.projectId"
+          outputParameters:
+            - type: object
+              mapping: "$."
+
+        - name: publish-project
+          description: "Publish Theneo project documentation, making it publicly accessible."
+          hints:
+            readOnly: false
+          call: "theneo.publish-project"
+          with:
+            projectId: "tools.projectId"
+          outputParameters:
+            - type: object
+              mapping: "$."
+
+        - name: get-preview-link
+          description: "Get a preview URL for Theneo project documentation before publishing."
+          hints:
+            readOnly: true
+            idempotent: true
+          call: "theneo.get-preview-project-link"
+          with:
+            projectId: "tools.projectId"
+          outputParameters:
+            - type: object
+              mapping: "$."
+
+        - name: list-workspaces
+          description: "List all Theneo workspaces available to the authenticated user."
+          hints:
+            readOnly: true
+            idempotent: true
+          call: "theneo.list-workspaces"
+          outputParameters:
+            - type: array
+              mapping: "$."

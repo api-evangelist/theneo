@@ -34,7 +34,7 @@ paths:
   /projects:
     get:
       operationId: getAllProjects
-      summary: Theneo Get all projects
+      summary: Get All Projects
       description: >-
         Retrieves a list of all API documentation projects accessible to the
         authenticated user.
@@ -57,7 +57,7 @@ paths:
                 $ref: '#/components/schemas/Error'
     post:
       operationId: addNewProject
-      summary: Theneo Add new project
+      summary: Add New Project
       description: >-
         Creates a new API documentation project in the specified workspace.
       tags:
@@ -90,7 +90,7 @@ paths:
   /projects/{projectId}:
     get:
       operationId: getProjectById
-      summary: Theneo Get project by ID
+      summary: Get Project By ID
       description: Retrieves details of a specific project by its unique identifier.
       tags:
         - Projects
@@ -122,7 +122,7 @@ paths:
                 $ref: '#/components/schemas/Error'
     delete:
       operationId: deleteProject
-      summary: Theneo Delete project
+      summary: Delete Project
       description: Deletes an API documentation project by its unique identifier.
       tags:
         - Projects
@@ -155,7 +155,7 @@ paths:
   /projects/{projectId}/users:
     get:
       operationId: getAccessibleUsers
-      summary: Theneo Get accessible users
+      summary: Get Accessible Users
       description: >-
         Retrieves the list of users who have access to the specified project.
       tags:
@@ -191,7 +191,7 @@ paths:
   /projects/{projectId}/share:
     post:
       operationId: shareProject
-      summary: Theneo Share a project
+      summary: Share A Project
       description: >-
         Shares a project with specified users by granting them access.
       tags:
@@ -237,7 +237,7 @@ paths:
   /projects/{projectId}/users/{userId}:
     patch:
       operationId: changeUserAccess
-      summary: Theneo Change user access to a project
+      summary: Change User Access To A Project
       description: >-
         Updates the access role of a user on a specific project.
       tags:
@@ -289,7 +289,7 @@ paths:
   /projects/{projectId}/import:
     post:
       operationId: importApiSpecification
-      summary: Theneo Import API specification
+      summary: Import API Specification
       description: >-
         Imports an API specification file into an existing project. Supports
         OpenAPI/Swagger, Postman Collections, GraphQL, gRPC, SOAP/WSDL, and
@@ -337,7 +337,7 @@ paths:
   /projects/{projectId}/publish:
     post:
       operationId: publishProject
-      summary: Theneo Publish project
+      summary: Publish Project
       description: >-
         Publishes the API documentation for a project, making it publicly
         accessible at its documentation URL.
@@ -372,7 +372,7 @@ paths:
   /projects/{projectId}/preview:
     get:
       operationId: getPreviewProjectLink
-      summary: Theneo Get preview project link
+      summary: Get Preview Project Link
       description: >-
         Returns a preview link for the project documentation before it is
         published.
@@ -407,7 +407,7 @@ paths:
   /workspaces:
     get:
       operationId: listWorkspaces
-      summary: Theneo List workspaces
+      summary: List Workspaces
       description: >-
         Retrieves a list of all workspaces available to the authenticated user.
       tags:

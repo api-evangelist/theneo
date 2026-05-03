@@ -1,0 +1,453 @@
+naftiko: "1.0.0-alpha1"
+
+info:
+  label: "Theneo API"
+  description: "Programmatic access to manage API documentation projects, workspaces, user access, and API specification imports on the Theneo platform."
+  tags:
+    - API Documentation
+    - Developer Tools
+    - Documentation Platform
+    - AI
+  created: "2026-05-03"
+  modified: "2026-05-03"
+
+binds:
+  - namespace: env
+    keys:
+      THENEO_API_KEY: THENEO_API_KEY
+
+capability:
+  consumes:
+    - type: http
+      namespace: theneo
+      baseUri: https://api.theneo.io
+      description: "AI-powered API documentation platform for managing projects, workspaces, and publishing."
+      authentication:
+        type: apikey
+        key: Authorization
+        value: "{{THENEO_API_KEY}}"
+        placement: header
+      resources:
+        - name: projects
+          path: /projects
+          description: "Manage API documentation projects."
+          operations:
+            - name: get-all-projects
+              method: GET
+              description: "Retrieves a list of all API documentation projects accessible to the authenticated user."
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: array
+                  value: "$."
+            - name: add-new-project
+              method: POST
+              description: "Creates a new API documentation project in the specified workspace."
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: object
+                  value: "$."
+              body:
+                type: json
+                data:
+                  name: "{{tools.name}}"
+                  workspace: "{{tools.workspace}}"
+                  description: "{{tools.description}}"
+                  link: "{{tools.link}}"
+                  publish: "{{tools.publish}}"
+
+        - name: project-by-id
+          path: /projects/{projectId}
+          description: "Manage a specific API documentation project."
+          operations:
+            - name: get-project-by-id
+              method: GET
+              description: "Retrieves details of a specific project by its unique identifier."
+              inputParameters:
+                - name: projectId
+                  in: path
+                  type: string
+                  required: true
+                  description: "The unique identifier of the project."
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: object
+                  value: "$."
+            - name: delete-project
+              method: DELETE
+              description: "Deletes an API documentation project by its unique identifier."
+              inputParameters:
+                - name: projectId
+                  in: path
+                  type: string
+                  required: true
+                  description: "The unique identifier of the project."
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: object
+                  value: "$."
+
+        - name: project-users
+          path: /projects/{projectId}/users
+          description: "Manage users with access to a project."
+          operations:
+            - name: get-accessible-users
+              method: GET
+              description: "Retrieves the list of users who have access to the specified project."
+              inputParameters:
+                - name: projectId
+                  in: path
+                  type: string
+                  required: true
+                  description: "The unique identifier of the project."
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: array
+                  value: "$."
+
+        - name: project-share
+          path: /projects/{projectId}/share
+          description: "Share a project with other users."
+          operations:
+            - name: share-project
+              method: POST
+              description: "Shares a project with specified users by granting them access."
+              inputParameters:
+                - name: projectId
+                  in: path
+                  type: string
+                  required: true
+                  description: "The unique identifier of the project."
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: object
+                  value: "$."
+              body:
+                type: json
+                data:
+                  email: "{{tools.email}}"
+                  role: "{{tools.role}}"
+
+        - name: project-user-access
+          path: /projects/{projectId}/users/{userId}
+          description: "Manage a specific user's access to a project."
+          operations:
+            - name: change-user-access
+              method: PATCH
+              description: "Updates the access role of a user on a specific project."
+              inputParameters:
+                - name: projectId
+                  in: path
+                  type: string
+                  required: true
+                  description: "The unique identifier of the project."
+                - name: userId
+                  in: path
+                  type: string
+                  required: true
+                  description: "The unique identifier of the user."
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: object
+                  value: "$."
+              body:
+                type: json
+                data:
+                  role: "{{tools.role}}"
+
+        - name: project-import
+          path: /projects/{projectId}/import
+          description: "Import API specifications into a project."
+          operations:
+            - name: import-api-specification
+              method: POST
+              description: "Imports an API specification file into an existing project."
+              inputParameters:
+                - name: projectId
+                  in: path
+                  type: string
+                  required: true
+                  description: "The unique identifier of the project."
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: object
+                  value: "$."
+              body:
+                type: json
+                data:
+                  link: "{{tools.link}}"
+                  importType: "{{tools.importType}}"
+
+        - name: project-publish
+          path: /projects/{projectId}/publish
+          description: "Publish API documentation for a project."
+          operations:
+            - name: publish-project
+              method: POST
+              description: "Publishes the API documentation for a project, making it publicly accessible."
+              inputParameters:
+                - name: projectId
+                  in: path
+                  type: string
+                  required: true
+                  description: "The unique identifier of the project."
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: object
+                  value: "$."
+
+        - name: project-preview
+          path: /projects/{projectId}/preview
+          description: "Get preview link for project documentation."
+          operations:
+            - name: get-preview-project-link
+              method: GET
+              description: "Returns a preview link for the project documentation before it is published."
+              inputParameters:
+                - name: projectId
+                  in: path
+                  type: string
+                  required: true
+                  description: "The unique identifier of the project."
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: object
+                  value: "$."
+
+        - name: workspaces
+          path: /workspaces
+          description: "Manage workspaces."
+          operations:
+            - name: list-workspaces
+              method: GET
+              description: "Retrieves a list of all workspaces available to the authenticated user."
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: array
+                  value: "$."
+
+  exposes:
+    - type: rest
+      port: 8100
+      namespace: theneo-rest
+      resources:
+        - path: /v1/projects
+          name: projects
+          description: "List and create API documentation projects."
+          operations:
+            - method: GET
+              name: get-all-projects
+              description: "Get all projects."
+              call: "theneo.get-all-projects"
+              outputParameters:
+                - type: array
+                  mapping: "$."
+            - method: POST
+              name: add-new-project
+              description: "Create a new project."
+              call: "theneo.add-new-project"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+
+        - path: /v1/projects/{projectId}
+          name: project-by-id
+          description: "Get or delete a specific project."
+          operations:
+            - method: GET
+              name: get-project-by-id
+              description: "Get project details."
+              call: "theneo.get-project-by-id"
+              with:
+                projectId: "rest.projectId"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+            - method: DELETE
+              name: delete-project
+              description: "Delete a project."
+              call: "theneo.delete-project"
+              with:
+                projectId: "rest.projectId"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+
+        - path: /v1/projects/{projectId}/import
+          name: project-import
+          description: "Import API specifications into a project."
+          operations:
+            - method: POST
+              name: import-api-specification
+              description: "Import an API spec."
+              call: "theneo.import-api-specification"
+              with:
+                projectId: "rest.projectId"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+
+        - path: /v1/projects/{projectId}/publish
+          name: project-publish
+          description: "Publish project documentation."
+          operations:
+            - method: POST
+              name: publish-project
+              description: "Publish the project docs."
+              call: "theneo.publish-project"
+              with:
+                projectId: "rest.projectId"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+
+        - path: /v1/workspaces
+          name: workspaces
+          description: "List workspaces."
+          operations:
+            - method: GET
+              name: list-workspaces
+              description: "List all workspaces."
+              call: "theneo.list-workspaces"
+              outputParameters:
+                - type: array
+                  mapping: "$."
+
+    - type: mcp
+      port: 9100
+      namespace: theneo-mcp
+      transport: http
+      tools:
+        - name: get-all-projects
+          description: "List all API documentation projects for the authenticated user."
+          hints:
+            readOnly: true
+            idempotent: true
+          call: "theneo.get-all-projects"
+          outputParameters:
+            - type: array
+              mapping: "$."
+
+        - name: add-new-project
+          description: "Create a new API documentation project."
+          hints:
+            readOnly: false
+          call: "theneo.add-new-project"
+          outputParameters:
+            - type: object
+              mapping: "$."
+
+        - name: get-project-by-id
+          description: "Get details for a specific project by ID."
+          hints:
+            readOnly: true
+            idempotent: true
+          call: "theneo.get-project-by-id"
+          with:
+            projectId: "tools.projectId"
+          outputParameters:
+            - type: object
+              mapping: "$."
+
+        - name: delete-project
+          description: "Delete a project by ID."
+          hints:
+            readOnly: false
+            destructive: true
+            idempotent: true
+          call: "theneo.delete-project"
+          with:
+            projectId: "tools.projectId"
+          outputParameters:
+            - type: object
+              mapping: "$."
+
+        - name: get-accessible-users
+          description: "List users with access to a project."
+          hints:
+            readOnly: true
+            idempotent: true
+          call: "theneo.get-accessible-users"
+          with:
+            projectId: "tools.projectId"
+          outputParameters:
+            - type: array
+              mapping: "$."
+
+        - name: share-project
+          description: "Share a project with a user by email."
+          hints:
+            readOnly: false
+          call: "theneo.share-project"
+          with:
+            projectId: "tools.projectId"
+          outputParameters:
+            - type: object
+              mapping: "$."
+
+        - name: change-user-access
+          description: "Change a user's access role on a project."
+          hints:
+            readOnly: false
+            idempotent: true
+          call: "theneo.change-user-access"
+          with:
+            projectId: "tools.projectId"
+            userId: "tools.userId"
+          outputParameters:
+            - type: object
+              mapping: "$."
+
+        - name: import-api-specification
+          description: "Import an API specification (OpenAPI, Postman, GraphQL) into a project."
+          hints:
+            readOnly: false
+          call: "theneo.import-api-specification"
+          with:
+            projectId: "tools.projectId"
+          outputParameters:
+            - type: object
+              mapping: "$."
+
+        - name: publish-project
+          description: "Publish API documentation for a project, making it publicly accessible."
+          hints:
+            readOnly: false
+          call: "theneo.publish-project"
+          with:
+            projectId: "tools.projectId"
+          outputParameters:
+            - type: object
+              mapping: "$."
+
+        - name: get-preview-project-link
+          description: "Get a preview link for project documentation before publishing."
+          hints:
+            readOnly: true
+            idempotent: true
+          call: "theneo.get-preview-project-link"
+          with:
+            projectId: "tools.projectId"
+          outputParameters:
+            - type: object
+              mapping: "$."
+
+        - name: list-workspaces
+          description: "List all workspaces available to the authenticated user."
+          hints:
+            readOnly: true
+            idempotent: true
+          call: "theneo.list-workspaces"
+          outputParameters:
+            - type: array
+              mapping: "$."

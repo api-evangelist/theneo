@@ -1,0 +1,39 @@
+{
+  "name": "Theneo Project Structure",
+  "description": "Structural documentation for the Theneo Project resource and related entities.",
+  "entities": [
+    {
+      "name": "Project",
+      "description": "An API documentation project on the Theneo platform.",
+      "fields": [
+        { "name": "id", "type": "string", "required": false, "description": "Unique identifier of the project." },
+        { "name": "name", "type": "string", "required": true, "description": "The name of the project." },
+        { "name": "slug", "type": "string", "required": false, "description": "URL-friendly slug for the project." },
+        { "name": "workspaceId", "type": "string", "required": false, "description": "ID of the workspace this project belongs to." },
+        { "name": "description", "type": "string", "required": false, "description": "Description of the project." },
+        { "name": "published", "type": "boolean", "required": false, "description": "Whether the documentation is published." },
+        { "name": "createdAt", "type": "string (date-time)", "required": false, "description": "Creation timestamp." },
+        { "name": "updatedAt", "type": "string (date-time)", "required": false, "description": "Last update timestamp." }
+      ]
+    },
+    {
+      "name": "Workspace",
+      "description": "A Theneo workspace containing multiple API documentation projects.",
+      "fields": [
+        { "name": "id", "type": "string", "required": false, "description": "Unique identifier of the workspace." },
+        { "name": "name", "type": "string", "required": false, "description": "The name of the workspace." },
+        { "name": "slug", "type": "string", "required": false, "description": "URL-friendly slug for the workspace." }
+      ]
+    },
+    {
+      "name": "ProjectUser",
+      "description": "A user with access to an API documentation project.",
+      "fields": [
+        { "name": "id", "type": "string", "required": false, "description": "Unique identifier of the user." },
+        { "name": "email", "type": "string (email)", "required": false, "description": "Email address of the user." },
+        { "name": "role", "type": "string (enum: viewer | editor | admin)", "required": false, "description": "Access role of the user on the project." },
+        { "name": "name", "type": "string", "required": false, "description": "Display name of the user." }
+      ]
+    }
+  ]
+}

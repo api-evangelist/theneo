@@ -1,0 +1,112 @@
+vocabulary:
+  provider: Theneo
+  description: >-
+    Vocabulary and taxonomy for the Theneo API documentation platform,
+    covering core concepts, resource types, roles, and import strategies.
+  terms:
+    - term: Project
+      definition: >-
+        An API documentation project on the Theneo platform. Contains imported
+        API specifications and generated documentation. Can be published to a public URL.
+      tags:
+        - Core Resource
+        - Documentation
+
+    - term: Workspace
+      definition: >-
+        A logical grouping of API documentation projects within Theneo. Used to
+        organize projects by team, organization, or product area.
+      tags:
+        - Core Resource
+        - Organization
+
+    - term: Import
+      definition: >-
+        The process of loading an API specification (OpenAPI, Swagger, Postman,
+        GraphQL, gRPC, SOAP/WSDL, AsyncAPI) into a Theneo project to generate documentation.
+      tags:
+        - Operation
+        - Specification
+
+    - term: Publish
+      definition: >-
+        The action of making a project's generated API documentation publicly
+        accessible at a stable documentation URL.
+      tags:
+        - Operation
+        - Publishing
+
+    - term: Preview
+      definition: >-
+        A temporary, non-public URL for reviewing documentation before publishing.
+      tags:
+        - Operation
+        - Publishing
+
+    - term: Role
+      definition: >-
+        Access level assigned to a user on a project. Values are: viewer (read-only),
+        editor (can modify), admin (full control including deletion).
+      tags:
+        - Access Control
+        - Collaboration
+      values:
+        - viewer
+        - editor
+        - admin
+
+    - term: Import Type
+      definition: >-
+        The strategy used when importing an API specification into an existing project.
+      tags:
+        - Import
+        - Configuration
+      values:
+        - endpoints: Import only endpoint definitions.
+        - overwrite: Replace the existing specification entirely.
+        - append: Add new endpoints to the existing specification.
+        - merge: Merge the new specification with the existing one.
+
+    - term: API Key
+      definition: >-
+        Authentication credential for the Theneo API, passed as the Authorization header.
+        Generated from the Theneo dashboard or accessible via THENEO_API_KEY environment variable.
+      tags:
+        - Authentication
+        - Security
+
+    - term: Slug
+      definition: >-
+        A URL-friendly identifier derived from a project or workspace name,
+        used in public documentation URLs (e.g., app.theneo.io/{workspace-slug}/{project-slug}).
+      tags:
+        - Identifier
+        - URL
+
+  domains:
+    - name: API Documentation
+      description: The primary domain of Theneo — generating, managing, and publishing interactive API documentation.
+      concepts:
+        - Project
+        - Workspace
+        - Import
+        - Publish
+        - Preview
+
+    - name: Collaboration
+      description: Managing who has access to documentation projects and at what level.
+      concepts:
+        - Role
+        - Project User
+        - Share
+
+    - name: Specification Formats
+      description: API specification formats supported for import into Theneo projects.
+      concepts:
+        - OpenAPI
+        - Swagger
+        - Postman Collection
+        - GraphQL
+        - gRPC
+        - SOAP/WSDL
+        - AsyncAPI

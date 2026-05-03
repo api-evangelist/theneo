@@ -1,0 +1,16 @@
+{
+  "request": {
+    "method": "POST",
+    "url": "https://api.theneo.io/projects/proj_01HX5QK8Z3JVBM2N4P7R9T6WY/publish",
+    "headers": {
+      "Authorization": "your-api-key-here"
+    }
+  },
+  "response": {
+    "status": 200,
+    "body": {
+      "success": true,
+      "url": "https://app.theneo.io/my-company/payment-api"
+    }
+  }
+}
