@@ -1,0 +1,184 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Theneo API — Projects
+  description: 'Theneo API — Projects. 4 operations. Lead operation: Get All Projects. Self-contained Naftiko capability covering
+    one Theneo business surface.'
+  tags:
+  - Theneo
+  - Projects
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    THENEO_API_KEY: THENEO_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: theneo-projects
+    baseUri: https://api.theneo.io
+    description: Theneo API — Projects business capability. Self-contained, no shared references.
+    resources:
+    - name: projects
+      path: /projects
+      operations:
+      - name: getallprojects
+        method: GET
+        description: Get All Projects
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: addnewproject
+        method: POST
+        description: Add New Project
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    - name: projects-projectId
+      path: /projects/{projectId}
+      operations:
+      - name: getprojectbyid
+        method: GET
+        description: Get Project By ID
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: projectId
+          in: path
+          type: string
+          description: The unique identifier of the project.
+          required: true
+      - name: deleteproject
+        method: DELETE
+        description: Delete Project
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: projectId
+          in: path
+          type: string
+          description: The unique identifier of the project.
+          required: true
+    authentication:
+      type: apikey
+      key: Authorization
+      value: '{{env.THENEO_API_KEY}}'
+      placement: header
+  exposes:
+  - type: rest
+    namespace: theneo-projects-rest
+    port: 8080
+    description: REST adapter for Theneo API — Projects. One Spectral-compliant resource per consumed operation, prefixed
+      with /v1.
+    resources:
+    - path: /v1/projects
+      name: projects
+      description: REST surface for projects.
+      operations:
+      - method: GET
+        name: getallprojects
+        description: Get All Projects
+        call: theneo-projects.getallprojects
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: POST
+        name: addnewproject
+        description: Add New Project
+        call: theneo-projects.addnewproject
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/projects/{projectid}
+      name: projects-projectid
+      description: REST surface for projects-projectId.
+      operations:
+      - method: GET
+        name: getprojectbyid
+        description: Get Project By ID
+        call: theneo-projects.getprojectbyid
+        with:
+          projectId: rest.projectId
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: DELETE
+        name: deleteproject
+        description: Delete Project
+        call: theneo-projects.deleteproject
+        with:
+          projectId: rest.projectId
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: theneo-projects-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Theneo API — Projects. One tool per consumed operation, routed inline through this capability's
+      consumes block.
+    tools:
+    - name: get-all-projects
+      description: Get All Projects
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: theneo-projects.getallprojects
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: add-new-project
+      description: Add New Project
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: theneo-projects.addnewproject
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: get-project-id
+      description: Get Project By ID
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: theneo-projects.getprojectbyid
+      with:
+        projectId: tools.projectId
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: delete-project
+      description: Delete Project
+      hints:
+        readOnly: false
+        destructive: true
+        idempotent: true
+      call: theneo-projects.deleteproject
+      with:
+        projectId: tools.projectId
+      outputParameters:
+      - type: object
+        mapping: $.

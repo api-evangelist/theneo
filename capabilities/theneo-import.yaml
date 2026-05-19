@@ -1,0 +1,89 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Theneo API — Import
+  description: 'Theneo API — Import. 1 operations. Lead operation: Import API Specification. Self-contained Naftiko capability
+    covering one Theneo business surface.'
+  tags:
+  - Theneo
+  - Import
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    THENEO_API_KEY: THENEO_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: theneo-import
+    baseUri: https://api.theneo.io
+    description: Theneo API — Import business capability. Self-contained, no shared references.
+    resources:
+    - name: projects-projectId-import
+      path: /projects/{projectId}/import
+      operations:
+      - name: importapispecification
+        method: POST
+        description: Import API Specification
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: projectId
+          in: path
+          type: string
+          description: The unique identifier of the project.
+          required: true
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    authentication:
+      type: apikey
+      key: Authorization
+      value: '{{env.THENEO_API_KEY}}'
+      placement: header
+  exposes:
+  - type: rest
+    namespace: theneo-import-rest
+    port: 8080
+    description: REST adapter for Theneo API — Import. One Spectral-compliant resource per consumed operation, prefixed with
+      /v1.
+    resources:
+    - path: /v1/projects/{projectid}/import
+      name: projects-projectid-import
+      description: REST surface for projects-projectId-import.
+      operations:
+      - method: POST
+        name: importapispecification
+        description: Import API Specification
+        call: theneo-import.importapispecification
+        with:
+          projectId: rest.projectId
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: theneo-import-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Theneo API — Import. One tool per consumed operation, routed inline through this capability's
+      consumes block.
+    tools:
+    - name: import-api-specification
+      description: Import API Specification
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: theneo-import.importapispecification
+      with:
+        projectId: tools.projectId
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
