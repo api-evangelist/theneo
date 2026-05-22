@@ -1,8 +1,9 @@
 vocabulary:
   provider: Theneo
   description: >-
-    Vocabulary and taxonomy for the Theneo API documentation platform,
-    covering core concepts, resource types, roles, and import strategies.
+    Vocabulary and taxonomy for the Theneo API documentation and developer portal
+    platform. Covers core resources, roles, import strategies, AI features, and
+    agent-readiness concepts (MCP, llms.txt, Elva, Ask AI Bot).
   terms:
     - term: Project
       definition: >-
@@ -15,15 +16,25 @@ vocabulary:
     - term: Workspace
       definition: >-
         A logical grouping of API documentation projects within Theneo. Used to
-        organize projects by team, organization, or product area.
+        organize projects by team, organization, or product area. Subscription
+        plans are scoped per workspace.
       tags:
         - Core Resource
         - Organization
 
+    - term: Developer Hub
+      definition: >-
+        A branded developer portal grouping multiple Theneo projects, guides, and
+        changelogs into a unified destination. The Growth tier allows up to 20.
+      tags:
+        - Developer Portal
+        - Multi-Portal
+
     - term: Import
       definition: >-
         The process of loading an API specification (OpenAPI, Swagger, Postman,
-        GraphQL, gRPC, SOAP/WSDL, AsyncAPI) into a Theneo project to generate documentation.
+        GraphQL, gRPC, SOAP/WSDL, AsyncAPI) into a Theneo project to generate
+        documentation. Imports can run via file upload, URL, or text input.
       tags:
         - Operation
         - Specification
@@ -83,15 +94,142 @@ vocabulary:
         - Identifier
         - URL
 
+    - term: AI Co-pilot
+      definition: >-
+        Theneo's documentation generation assistant. At import time the user picks a
+        co-pilot level — full generation, content enhancement, or no AI — to control
+        how aggressively the AI authors descriptions, summaries, and code samples.
+      tags:
+        - AI
+        - Documentation Generation
+
+    - term: TheneoAI Doc Builder
+      definition: >-
+        The metered AI Co-pilot capability surfaced in pricing. Starter is capped at
+        2,000 actions per month; Business and above are unlimited.
+      tags:
+        - AI
+        - Pricing
+
+    - term: Ask AI Bot
+      definition: >-
+        Theneo's embedded AI assistant that answers developer questions directly
+        from published documentation rather than returning a list of search results.
+      tags:
+        - AI
+        - Search
+
+    - term: searchAI
+      definition: >-
+        AI-powered search over a project's documentation. Starter includes up to 100
+        GPT-powered search responses per month; Business and above are unlimited.
+      tags:
+        - AI
+        - Search
+        - Pricing
+
+    - term: Smart Changelog
+      definition: >-
+        Automated detection of breaking changes and changelog entries as OpenAPI
+        specs evolve between imports.
+      tags:
+        - AI
+        - Change Management
+
+    - term: MCP Server
+      definition: >-
+        Model Context Protocol server exposure of a Theneo developer portal so that
+        AI agents can discover and call documented APIs as tools.
+      tags:
+        - AI Agents
+        - MCP
+        - Agent Readiness
+
+    - term: llms.txt
+      definition: >-
+        Theneo-generated llms.txt index that advertises an API and its documentation
+        to large language models for discovery.
+      tags:
+        - AI Agents
+        - Agent Readiness
+        - Discovery
+
+    - term: Elva
+      definition: >-
+        Theneo's adjacent API management platform that catalogs APIs and exposes
+        them to AI agents via MCP servers. Announced May 15, 2026.
+      tags:
+        - Product
+        - API Management
+        - AI Agents
+
+    - term: Cartlis
+      definition: >-
+        Theneo's AI-powered API Governance Agent that enforces rules in real time
+        and auto-patches violations across infrastructure (open source, Python).
+      tags:
+        - AI
+        - API Governance
+        - Open Source
+
+    - term: Theneo CLI
+      definition: >-
+        The @theneo/cli npm package providing terminal-based management of Theneo
+        projects, imports, and publishing flows. Requires Node 18.x or higher.
+      tags:
+        - CLI
+        - Tooling
+
+    - term: Theneo SDK
+      definition: >-
+        The @theneo/sdk npm package wrapping the Theneo API for programmatic
+        integration from TypeScript and JavaScript applications.
+      tags:
+        - SDK
+        - Tooling
+
+    - term: Theneo GitHub Action
+      definition: >-
+        GitHub Action published from Theneo-Inc/api-documentation that imports an
+        OpenAPI/Swagger spec into a Theneo project on push, with configurable merge
+        strategies and optional auto-publish.
+      tags:
+        - CI/CD
+        - GitHub Actions
+        - Automation
+
+    - term: EU Data Residency
+      definition: >-
+        Optional enterprise feature hosting a customer's documentation in the EU
+        for GDPR-driven data residency requirements. Announced May 11, 2026.
+      tags:
+        - Compliance
+        - GDPR
+        - Enterprise
+
   domains:
     - name: API Documentation
       description: The primary domain of Theneo — generating, managing, and publishing interactive API documentation.
       concepts:
         - Project
         - Workspace
+        - Developer Hub
         - Import
         - Publish
         - Preview
+
+    - name: AI & Agent Readiness
+      description: AI authoring, AI-powered search, and machine-readable endpoints for AI agents.
+      concepts:
+        - AI Co-pilot
+        - TheneoAI Doc Builder
+        - Ask AI Bot
+        - searchAI
+        - Smart Changelog
+        - MCP Server
+        - llms.txt
+        - Elva
+        - Cartlis
 
     - name: Collaboration
       description: Managing who has access to documentation projects and at what level.
@@ -110,3 +248,23 @@ vocabulary:
         - gRPC
         - SOAP/WSDL
         - AsyncAPI
+
+    - name: Tooling & Automation
+      description: First-party packages and CI integrations that wrap the Theneo API.
+      concepts:
+        - Theneo CLI
+        - Theneo SDK
+        - Theneo GitHub Action
+        - API Key
+
+    - name: Compliance & Security
+      description: Certifications and enterprise controls for regulated customers.
+      concepts:
+        - SOC 2 Type II
+        - ISO 27001
+        - ISO 9001
+        - GDPR
+        - SAML SSO
+        - OAuth 2.0
+        - IP Whitelisting
+        - EU Data Residency

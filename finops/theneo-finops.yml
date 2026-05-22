@@ -11,12 +11,13 @@ providerId: theneo
 publisherName: Theneo
 serviceCategory: API
 created: '2026-05-04'
-modified: '2026-05-04'
+modified: '2026-05-22'
 tags:
   - API Documentation
-  - Developer Tools
+  - Developer Portal
   - Documentation Platform
   - AI
+  - AI Co-Pilot
   - Platform
   - FinOps
   - Cost Management
@@ -64,29 +65,63 @@ domains:
       - Onboarding Workloads
       - Intersecting Disciplines
 billingModel:
-  pricingCategory: Usage-Based
+  pricingCategory: Subscription
   billingFrequency: Monthly
+  billingAlternateFrequency: Annual
   billingCurrency: USD
+  billingUnit: workspace
   chargeCategories:
+    - Subscription
     - Usage
     - Purchase
     - Tax
     - Credit
     - Adjustment
   chargeFrequency: Recurring
+  notes: >-
+    Theneo's published pricing is workspace-based subscription, not pure usage-based.
+    Starter is free; Business is $120/month/workspace annual ($150/month monthly);
+    Growth is $400/month/workspace annual ($450/month monthly); Enterprise is custom.
+    AI usage is metered on Starter (100 search responses, 2,000 AI actions per month)
+    and unlimited on paid tiers, so AI quota overage does not produce overage charges
+    on paid tiers — instead, AI capacity is bundled into the tier.
 focusColumns:
   ServiceName: Theneo
-  ServiceCategory: Developer Tools / API
+  ServiceCategory: Developer Tools / API Documentation
   ProviderName: Theneo
   PublisherName: Theneo
   InvoiceIssuerName: Theneo
-  PricingCategory: Usage-Based
-  PricingUnit: request
+  PricingCategory: Subscription
+  PricingUnit: workspace-month
   BillingCurrency: USD
-  ChargeCategory: Usage
+  ChargeCategory: Subscription
 meters:
+  - name: workspace_subscription
+    description: Monthly workspace subscription charge by tier
+    unit: workspace-month
+    aggregation: sum
+    dimensions:
+      - tier
+      - billing_cadence
+      - workspace
+  - name: theneo_ai_actions
+    description: Count of TheneoAI Doc Builder Co-pilot actions (generation/enhancement)
+    unit: ai_action
+    aggregation: sum
+    dimensions:
+      - tier
+      - workspace
+      - project
+  - name: search_ai_responses
+    description: Count of GPT-powered search responses served (searchAI / Ask AI Bot)
+    unit: response
+    aggregation: sum
+    dimensions:
+      - tier
+      - workspace
+      - project
   - name: api_requests
-    description: Count of billable API requests
+    description: Count of billable Theneo API requests
     unit: request
     aggregation: sum
     dimensions:
@@ -95,22 +130,6 @@ meters:
       - tier
       - region
       - consumer
-  - name: data_egress
-    description: Bytes returned over the network in API responses
-    unit: GB
-    aggregation: sum
-    dimensions:
-      - api
-      - region
-      - consumer
-  - name: compute_seconds
-    description: Server-side compute consumed by the request, where applicable
-    unit: second
-    aggregation: sum
-    dimensions:
-      - api
-      - endpoint
-      - tier
 apis:
   - name: Theneo
     baseURL: https://api.theneo.io
@@ -123,11 +142,17 @@ apis:
     serviceName: Theneo
     serviceCategory: API
 unitEconomics:
-  - name: Cost per 1K Requests
-    metric: billed_cost / (api_requests / 1000)
+  - name: Cost per Active Project
+    metric: billed_cost / active_projects
     target: TBD
-  - name: Cost per Active Consumer
-    metric: billed_cost / active_consumers
+  - name: Cost per Documentation Editor
+    metric: billed_cost / active_editors
+    target: TBD
+  - name: Cost per AI Action
+    metric: billed_cost / theneo_ai_actions
+    target: TBD
+  - name: Cost per Published Documentation Pageview
+    metric: billed_cost / published_pageviews
     target: TBD
 maintainers:
   - FN: Kin Lane

@@ -4,145 +4,285 @@ schema: https://raw.githubusercontent.com/api-evangelist/interface-research/main
 provider: Theneo
 providerId: theneo
 created: '2026-05-04'
-modified: '2026-05-04'
+modified: '2026-05-22'
 tags:
   - API Documentation
-  - Developer Tools
+  - Developer Portal
   - Documentation Platform
   - AI
+  - AI Co-Pilot
   - Platform
-description: Machine-readable plans and pricing scaffold for this API provider. Conforms to the API Commons
-  Plans schema. Tier limits and prices are scaffold defaults; replace with provider-published values.
+description: Machine-readable plans and pricing for the Theneo API documentation platform, derived from
+  the public pricing page at https://www.theneo.io/pricing. Tiers are workspace-based; AI quotas are listed
+  per workspace per month. Annual billing is shown; monthly equivalents are noted where published.
+sourceUrl: https://www.theneo.io/pricing
 plans:
-  - id: theneo-free
-    name: Free
+  - id: theneo-starter
+    name: Starter
     type: freemium
-    description: Free entry tier for the Theneo API surface. Intended for evaluation, prototyping, and
-      low-volume integrations. Real limits and pricing must be reconciled with the provider's published
-      plan documentation.
+    description: Free entry tier intended for evaluation and small teams. Includes limited AI-assisted
+      documentation generation and limited public/private projects.
     entries:
-      - label: API Requests
-        description: Monthly API request quota across all included endpoints
-        name: api_requests
+      - label: Public Projects
+        description: Maximum number of public documentation projects
+        name: public_projects
         type: quota
-        metric: requests
-        limit: 1000
-        timeFrame: month
+        metric: projects
+        limit: 1
+        timeFrame: account
         geo: global
         domains:
-          - https://api.theneo.io
+          - https://app.theneo.io
         unit: 1
         price: '0.00'
         userMultiplied: false
-      - label: Rate Limit
-        description: Maximum requests per minute on the free tier
-        name: rate_limit
-        type: rate
-        metric: requests_per_minute
-        limit: 10
-        timeFrame: minute
+      - label: Private Projects
+        description: Maximum number of private documentation projects
+        name: private_projects
+        type: quota
+        metric: projects
+        limit: 2
+        timeFrame: account
         geo: global
         domains:
-          - https://api.theneo.io
+          - https://app.theneo.io
+        unit: 1
+        price: '0.00'
+        userMultiplied: false
+      - label: Team Members
+        description: Maximum collaborators per workspace
+        name: team_members
+        type: quota
+        metric: users
+        limit: 20
+        timeFrame: account
+        geo: global
+        domains:
+          - https://app.theneo.io
+        unit: 1
+        price: '0.00'
+        userMultiplied: false
+      - label: GPT-Powered Search Results
+        description: Monthly cap on AI-powered search responses
+        name: gpt_search_results
+        type: quota
+        metric: search_responses
+        limit: 100
+        timeFrame: month
+        geo: global
+        domains:
+          - https://app.theneo.io
+        unit: 1
+        price: '0.00'
+        userMultiplied: false
+      - label: TheneoAI Doc Builder Assistance
+        description: Monthly cap on AI Co-pilot doc generation/enhancement actions
+        name: theneo_ai_actions
+        type: quota
+        metric: ai_actions
+        limit: 2000
+        timeFrame: month
+        geo: global
+        domains:
+          - https://app.theneo.io
         unit: 1
         price: '0.00'
         userMultiplied: false
     elements:
       - name: Public Documentation
+      - name: Up to 1 Public Project
+      - name: Up to 2 Private Projects
+      - name: Up to 20 Team Members
+      - name: AI Co-pilot (Limited)
+      - name: Ask AI Bot (Limited)
       - name: Community Support
-      - name: Sandbox Access
-      - name: Theneo
-  - id: theneo-pro
-    name: Professional
+  - id: theneo-business
+    name: Business
     type: paid
-    description: Production tier for Theneo. Provides higher quotas, priority support, and access to the
-      broader API portfolio. Pricing placeholder; align with the provider's pricing page.
+    description: Production tier for growing teams. Adds unlimited AI usage, custom branding, custom domain,
+      and SEO controls. Annual billing $120/month/workspace; monthly billing $150/month/workspace.
     entries:
-      - label: API Requests
-        description: Monthly API request quota
-        name: api_requests
+      - label: Projects
+        description: Maximum number of documentation projects per workspace
+        name: projects
         type: quota
-        metric: requests
-        limit: 100000
-        timeFrame: month
+        metric: projects
+        limit: 7
+        timeFrame: account
         geo: global
         domains:
-          - https://api.theneo.io
+          - https://app.theneo.io
         unit: 1
-        price: TBD
+        price: '120.00'
         userMultiplied: false
-      - label: Rate Limit
-        description: Maximum requests per minute on the professional tier
-        name: rate_limit
-        type: rate
-        metric: requests_per_minute
-        limit: 100
-        timeFrame: minute
+      - label: Team Members
+        description: Maximum collaborators per workspace
+        name: team_members
+        type: quota
+        metric: users
+        limit: 50
+        timeFrame: account
         geo: global
         domains:
-          - https://api.theneo.io
+          - https://app.theneo.io
         unit: 1
-        price: '0.00'
+        price: '120.00'
         userMultiplied: false
-      - label: Overage
-        description: Per-request price after monthly quota is exceeded
-        name: overage
-        type: metered
-        metric: requests
+      - label: searchAI
+        description: Unlimited AI-powered search across documentation
+        name: search_ai
+        type: quota
+        metric: search_responses
         limit: -1
         timeFrame: month
         geo: global
         domains:
-          - https://api.theneo.io
-        unit: 1000
-        price: TBD
+          - https://app.theneo.io
+        unit: 1
+        price: '120.00'
+        userMultiplied: false
+      - label: TheneoAI Doc Builder
+        description: Unlimited AI Co-pilot generation and enhancement
+        name: theneo_ai_actions
+        type: quota
+        metric: ai_actions
+        limit: -1
+        timeFrame: month
+        geo: global
+        domains:
+          - https://app.theneo.io
+        unit: 1
+        price: '120.00'
+        userMultiplied: false
+      - label: Workspace Subscription (Annual)
+        description: Annual-billing list price per workspace per month
+        name: workspace_subscription_annual
+        type: subscription
+        metric: workspace
+        limit: 1
+        timeFrame: month
+        geo: global
+        domains:
+          - https://www.theneo.io
+        unit: 1
+        price: '120.00'
+        userMultiplied: false
+      - label: Workspace Subscription (Monthly)
+        description: Month-to-month list price per workspace per month
+        name: workspace_subscription_monthly
+        type: subscription
+        metric: workspace
+        limit: 1
+        timeFrame: month
+        geo: global
+        domains:
+          - https://www.theneo.io
+        unit: 1
+        price: '150.00'
         userMultiplied: false
     elements:
-      - name: All Production Endpoints
-      - name: Email Support
-      - name: SLA Targets
-      - name: Webhook Subscriptions
-      - name: Theneo
+      - name: Everything In Starter
+      - name: Up to 7 Projects
+      - name: Up to 50 Team Members
+      - name: Unlimited searchAI
+      - name: Unlimited TheneoAI Doc Builder
+      - name: Customized Branding & SEO
+      - name: Custom Domain
+  - id: theneo-growth
+    name: Growth
+    type: paid
+    description: Scale tier for larger documentation operations. Adds custom CSS, custom ChatGPT prompt
+      configuration, multiple developer hubs, advanced security with IP whitelisting, and 1:1 Slack/Teams
+      support. Annual billing $400/month/workspace; monthly billing $450/month/workspace.
+    entries:
+      - label: Developer Hubs
+        description: Maximum number of developer hubs (multi-portal)
+        name: developer_hubs
+        type: quota
+        metric: hubs
+        limit: 20
+        timeFrame: account
+        geo: global
+        domains:
+          - https://app.theneo.io
+        unit: 1
+        price: '400.00'
+        userMultiplied: false
+      - label: Workspace Subscription (Annual)
+        description: Annual-billing list price per workspace per month
+        name: workspace_subscription_annual
+        type: subscription
+        metric: workspace
+        limit: 1
+        timeFrame: month
+        geo: global
+        domains:
+          - https://www.theneo.io
+        unit: 1
+        price: '400.00'
+        userMultiplied: false
+      - label: Workspace Subscription (Monthly)
+        description: Month-to-month list price per workspace per month
+        name: workspace_subscription_monthly
+        type: subscription
+        metric: workspace
+        limit: 1
+        timeFrame: month
+        geo: global
+        domains:
+          - https://www.theneo.io
+        unit: 1
+        price: '450.00'
+        userMultiplied: false
+    elements:
+      - name: Everything In Business
+      - name: Custom CSS
+      - name: Custom ChatGPT Prompt Configuration
+      - name: Up to 20 Developer Hubs
+      - name: Advanced Security & IP Whitelisting
+      - name: Slack & Teams 1:1 Support
   - id: theneo-enterprise
     name: Enterprise
     type: enterprise
-    description: Custom-negotiated tier for Theneo. Includes dedicated capacity, contractual SLAs, security
-      review, data residency options, and named technical account management.
+    description: Custom-negotiated tier with self-hosting, SAML SSO and OAuth 2.0, custom roles and permissions,
+      and unlimited projects/team members. Pricing on request; includes optional EU data residency.
     entries:
-      - label: API Requests
-        description: Negotiated request volume; -1 indicates uncapped subject to fair use
-        name: api_requests
+      - label: Projects
+        description: Negotiated; unlimited subject to contract
+        name: projects
         type: quota
-        metric: requests
+        metric: projects
         limit: -1
-        timeFrame: month
+        timeFrame: account
         geo: configurable
         domains:
-          - https://api.theneo.io
+          - https://app.theneo.io
         unit: 1
         price: custom
         userMultiplied: false
-      - label: Rate Limit
-        description: Negotiated burst and steady-state rate
-        name: rate_limit
-        type: rate
-        metric: requests_per_minute
-        limit: 1000
-        timeFrame: minute
+      - label: Team Members
+        description: Negotiated; unlimited subject to contract
+        name: team_members
+        type: quota
+        metric: users
+        limit: -1
+        timeFrame: account
         geo: configurable
         domains:
-          - https://api.theneo.io
+          - https://app.theneo.io
         unit: 1
         price: custom
         userMultiplied: false
     elements:
-      - name: Unlimited / Negotiated Volume
-      - name: 24/7 Dedicated Support
+      - name: Everything In Growth
+      - name: Self Hosting
+      - name: SAML SSO & OAuth 2.0
+      - name: Custom User Roles & Permissions
+      - name: Unlimited Projects
+      - name: Unlimited Team Members
+      - name: EU Data Residency (Optional)
+      - name: Dedicated Support
       - name: Contractual SLA
-      - name: Security & Compliance Review
-      - name: Dedicated Account Manager
-      - name: Custom Data Residency
-      - name: Theneo
 maintainers:
   - FN: Kin Lane
     email: kin@apievangelist.com

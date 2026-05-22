@@ -5,9 +5,12 @@ apis:
     name: Theneo
     tags:
     - API Documentation
+    - Developer Portal
     - Developer Tools
     - Documentation Platform
     - AI
+    - AI Co-Pilot
+    - MCP
     - OpenAPI
     humanURL: https://www.theneo.io/
     baseURL: https://api.theneo.io
@@ -42,28 +45,43 @@ apis:
       url: capabilities/theneo-users.yaml
     - type: NaftikoCapability
       url: capabilities/theneo-workspaces.yaml
-    description: The Theneo API provides programmatic access to manage API documentation projects, workspaces, user access,
-      and API specification imports on the Theneo platform. Supports creating, publishing, and sharing API documentation generated
-      from OpenAPI, Swagger, Postman, and GraphQL specifications.
+    - type: Plans
+      url: plans/theneo-plans-pricing.yml
+    - type: RateLimits
+      url: rate-limits/theneo-rate-limits.yml
+    - type: FinOps
+      url: finops/theneo-finops.yml
+    description: The Theneo API provides programmatic access to manage API documentation projects, workspaces,
+      user access, and API specification imports on the Theneo platform. Supports creating, publishing, and sharing
+      AI-generated API documentation built from OpenAPI, Swagger, Postman, GraphQL, gRPC, SOAP/WSDL, and AsyncAPI
+      specifications. Pairs with the @theneo/cli and @theneo/sdk npm packages and the Theneo GitHub Action for
+      CI-driven docs updates.
     contact:
     - FN: Theneo Support
       url: https://www.theneo.io/contact
 name: Theneo
 tags:
   - API Documentation
+  - Developer Portal
   - Developer Tools
   - Documentation Platform
   - AI
+  - AI Co-Pilot
+  - MCP
   - Platform
 kind: contract
 image: https://kinlane-productions.s3.amazonaws.com/apis-json/apis-json-logo.jpg
 access: 3rd-Party
 created: '2025-01-08'
-modified: '2026-05-19'
+modified: '2026-05-22'
 position: Consuming
-description: Beautiful, up-to-date docs without the effort. Automatically generate and enhance your API documentation with
-  AI, integrate seamlessly with your workflow, and collaborate effectively with your team. Theneo is an AI-powered API documentation
-  platform that generates interactive docs from OpenAPI, Swagger, Postman, and GraphQL specifications.
+description: Beautiful, up-to-date docs without the effort. Theneo is an AI-native API documentation and
+  developer portal platform that auto-generates interactive docs from OpenAPI, Swagger, Postman, GraphQL,
+  gRPC, SOAP/WSDL, and AsyncAPI specifications. Its AI Co-pilot can fully generate, enhance, or stay out
+  of the way of human-authored content, while Ask AI Bot, MCP server integration, llms.txt support, smart
+  changelogs, and the Elva API management platform extend the same surface to AI agents. Used by 15,000+
+  teams including Ticketmaster, Corpay, and SimilarWeb; backed by Y Combinator; SOC 2 Type II, ISO 27001,
+  ISO 9001, and GDPR compliant.
 maintainers:
   - FN: Kin Lane
     email: kin@apievangelist.com
@@ -74,6 +92,15 @@ common:
   - name: GitHub Organization
     url: https://github.com/Theneo-Inc
     type: GitHubOrganization
+  - name: Theneo CLI & SDK (theneo-tools)
+    url: https://github.com/Theneo-Inc/theneo-tools
+    type: SDK
+  - name: Theneo GitHub Action (api-documentation)
+    url: https://github.com/Theneo-Inc/api-documentation
+    type: GitHubAction
+  - name: Cartlis - AI-Powered API Governance Agent
+    url: https://github.com/Theneo-Inc/Cartlis
+    type: Repository
   - name: Theneo User Guide
     url: https://app.theneo.io/theneo/quickstart/theneo-quickstart-guide
     type: Documentation
@@ -89,3 +116,9 @@ common:
   - name: Theneo Security
     url: https://www.theneo.io/security
     type: Security
+  - name: Sign Up
+    url: https://app.theneo.io/signup
+    type: SignUp
+  - name: Book a Demo
+    url: https://calendly.com/theneo/theneo-demo
+    type: Demo

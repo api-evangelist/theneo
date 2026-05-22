@@ -4,19 +4,21 @@ schema: https://raw.githubusercontent.com/api-evangelist/interface-research/main
 provider: Theneo
 providerId: theneo
 created: '2026-05-04'
-modified: '2026-05-04'
+modified: '2026-05-22'
 tags:
   - API Documentation
-  - Developer Tools
+  - Developer Portal
   - Documentation Platform
   - AI
   - Platform
   - Rate Limiting
   - Quotas
   - Throttling
-description: Machine-readable rate limit definitions for the Theneo API surface. Captures per-tier quotas,
-  burst behavior, response signaling, and recovery semantics. Defaults are scaffold values to be replaced
-  with published provider limits.
+description: Machine-readable rate limit definitions for the Theneo API surface. Tier names track the
+  public pricing page (Starter, Business, Growth, Enterprise). Theneo's published pricing emphasizes
+  project, team-member, and AI-action quotas; per-minute API rate ceilings are scaffold values pending
+  authoritative documentation. The Theneo security page confirms platform-level rate limiting against
+  DoS attacks.
 headers:
   limit: X-RateLimit-Limit
   remaining: X-RateLimit-Remaining
@@ -28,8 +30,48 @@ responseCodes:
   quotaExceeded: 429
   serviceUnavailable: 503
 limits:
-  - tier: free
-    name: Free Tier Default
+  - tier: starter
+    name: Starter Public Projects
+    scope: account
+    metric: public_projects
+    limit: 1
+    timeFrame: account
+    applies:
+      - Theneo
+  - tier: starter
+    name: Starter Private Projects
+    scope: account
+    metric: private_projects
+    limit: 2
+    timeFrame: account
+    applies:
+      - Theneo
+  - tier: starter
+    name: Starter Team Members
+    scope: workspace
+    metric: team_members
+    limit: 20
+    timeFrame: account
+    applies:
+      - Theneo
+  - tier: starter
+    name: Starter GPT-Powered Search Quota
+    scope: workspace
+    metric: search_responses_per_month
+    limit: 100
+    timeFrame: month
+    applies:
+      - Theneo
+  - tier: starter
+    name: Starter TheneoAI Doc Builder Quota
+    scope: workspace
+    metric: ai_actions_per_month
+    limit: 2000
+    timeFrame: month
+    applies:
+      - Theneo
+  - tier: starter
+    name: Starter API Rate (Scaffold)
     scope: api-key
     metric: requests_per_minute
     limit: 10
@@ -37,16 +79,40 @@ limits:
     timeFrame: minute
     applies:
       - Theneo
-  - tier: free
-    name: Free Tier Monthly Quota
-    scope: api-key
-    metric: requests_per_month
-    limit: 1000
+  - tier: business
+    name: Business Projects
+    scope: workspace
+    metric: projects
+    limit: 7
+    timeFrame: account
+    applies:
+      - Theneo
+  - tier: business
+    name: Business Team Members
+    scope: workspace
+    metric: team_members
+    limit: 50
+    timeFrame: account
+    applies:
+      - Theneo
+  - tier: business
+    name: Business searchAI
+    scope: workspace
+    metric: search_responses_per_month
+    limit: -1
     timeFrame: month
     applies:
       - Theneo
-  - tier: professional
-    name: Professional Tier Default
+  - tier: business
+    name: Business TheneoAI Doc Builder
+    scope: workspace
+    metric: ai_actions_per_month
+    limit: -1
+    timeFrame: month
+    applies:
+      - Theneo
+  - tier: business
+    name: Business API Rate (Scaffold)
     scope: api-key
     metric: requests_per_minute
     limit: 100
@@ -54,16 +120,41 @@ limits:
     timeFrame: minute
     applies:
       - Theneo
-  - tier: professional
-    name: Professional Tier Monthly Quota
+  - tier: growth
+    name: Growth Developer Hubs
+    scope: workspace
+    metric: developer_hubs
+    limit: 20
+    timeFrame: account
+    applies:
+      - Theneo
+  - tier: growth
+    name: Growth API Rate (Scaffold)
     scope: api-key
-    metric: requests_per_month
-    limit: 100000
-    timeFrame: month
+    metric: requests_per_minute
+    limit: 300
+    burst: 600
+    timeFrame: minute
     applies:
       - Theneo
   - tier: enterprise
-    name: Enterprise Negotiated Limit
+    name: Enterprise Projects
+    scope: contract
+    metric: projects
+    limit: -1
+    timeFrame: account
+    applies:
+      - Theneo
+  - tier: enterprise
+    name: Enterprise Team Members
+    scope: contract
+    metric: team_members
+    limit: -1
+    timeFrame: account
+    applies:
+      - Theneo
+  - tier: enterprise
+    name: Enterprise Negotiated API Rate
     scope: contract
     metric: requests_per_minute
     limit: 1000
