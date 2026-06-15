@@ -1,0 +1,265 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Theneo API",
+    "version": "1.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "Authorization",
+      "value": "{{Authorization}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Projects",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get All Projects",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.theneo.io/projects"
+          },
+          "docs": "Retrieves a list of all API documentation projects accessible to the authenticated user."
+        },
+        {
+          "info": {
+            "name": "Add New Project",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.theneo.io/projects",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Creates a new API documentation project in the specified workspace."
+        },
+        {
+          "info": {
+            "name": "Get Project By ID",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.theneo.io/projects/:projectId",
+            "params": [
+              {
+                "name": "projectId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier of the project."
+              }
+            ]
+          },
+          "docs": "Retrieves details of a specific project by its unique identifier."
+        },
+        {
+          "info": {
+            "name": "Delete Project",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.theneo.io/projects/:projectId",
+            "params": [
+              {
+                "name": "projectId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier of the project."
+              }
+            ]
+          },
+          "docs": "Deletes an API documentation project by its unique identifier."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Users",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get Accessible Users",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.theneo.io/projects/:projectId/users",
+            "params": [
+              {
+                "name": "projectId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier of the project."
+              }
+            ]
+          },
+          "docs": "Retrieves the list of users who have access to the specified project."
+        },
+        {
+          "info": {
+            "name": "Share A Project",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.theneo.io/projects/:projectId/share",
+            "params": [
+              {
+                "name": "projectId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier of the project."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Shares a project with specified users by granting them access."
+        },
+        {
+          "info": {
+            "name": "Change User Access To A Project",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://api.theneo.io/projects/:projectId/users/:userId",
+            "params": [
+              {
+                "name": "projectId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier of the project."
+              },
+              {
+                "name": "userId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier of the user."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Updates the access role of a user on a specific project."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Import",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Import API Specification",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.theneo.io/projects/:projectId/import",
+            "params": [
+              {
+                "name": "projectId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier of the project."
+              }
+            ],
+            "body": {
+              "type": "multipart-form",
+              "data": []
+            }
+          },
+          "docs": "Imports an API specification file into an existing project. Supports OpenAPI/Swagger, Postman Collections, GraphQL, gRPC, SOAP/WSDL, and AsyncAPI formats. The import can be done via file upload, URL, or text."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Publishing",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Publish Project",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.theneo.io/projects/:projectId/publish",
+            "params": [
+              {
+                "name": "projectId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier of the project."
+              }
+            ]
+          },
+          "docs": "Publishes the API documentation for a project, making it publicly accessible at its documentation URL."
+        },
+        {
+          "info": {
+            "name": "Get Preview Project Link",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.theneo.io/projects/:projectId/preview",
+            "params": [
+              {
+                "name": "projectId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier of the project."
+              }
+            ]
+          },
+          "docs": "Returns a preview link for the project documentation before it is published."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Workspaces",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List Workspaces",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.theneo.io/workspaces"
+          },
+          "docs": "Retrieves a list of all workspaces available to the authenticated user."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}
