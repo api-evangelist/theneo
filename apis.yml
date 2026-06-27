@@ -84,7 +84,7 @@ common:
   type: GitHubOrganization
 - name: Theneo CLI & SDK (theneo-tools)
   url: https://github.com/Theneo-Inc/theneo-tools
-  type: SDK
+  type: SDKs
 - name: Theneo GitHub Action (api-documentation)
   url: https://github.com/Theneo-Inc/api-documentation
   type: GitHubAction
@@ -108,7 +108,7 @@ common:
   type: Security
 - name: Sign Up
   url: https://app.theneo.io/signup
-  type: SignUp
+  type: Signup
 - name: Book a Demo
   url: https://calendly.com/theneo/theneo-demo
   type: Demo
