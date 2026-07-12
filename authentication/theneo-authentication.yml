@@ -1,0 +1,17 @@
+generated: '2026-07-11'
+method: derived
+source: openapi/theneo-api-openapi.yml
+summary:
+  types:
+  - apiKey
+  api_key_in:
+  - header
+schemes:
+- name: apiKey
+  type: apiKey
+  in: header
+  parameter: Authorization
+  description: API key for authentication. Generate from the Theneo dashboard. Can also be set
+    via the THENEO_API_KEY environment variable when using the CLI or SDK.
+  sources:
+  - openapi/theneo-api-openapi.yml

@@ -77,6 +77,12 @@ maintainers:
   email: kin@apievangelist.com
 specificationVersion: '0.19'
 common:
+- type: TrustCenter
+  url: security/theneo-trust-center.yml
+- type: DomainSecurity
+  url: security/theneo-domain-security.yml
+- type: Authentication
+  url: authentication/theneo-authentication.yml
 - type: LinkedIn
   url: https://www.linkedin.com/company/theneoinc
 - name: GitHub Organization
