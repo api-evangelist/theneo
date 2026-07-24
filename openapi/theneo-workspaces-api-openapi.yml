@@ -1,0 +1,71 @@
+openapi: 3.1.0
+info:
+  title: Theneo Import Workspaces API
+  description: The Theneo API provides programmatic access to manage API documentation projects, workspaces, user access, and API specification imports on the Theneo platform. Theneo is an AI-powered API documentation tool that generates interactive docs from OpenAPI, Swagger, Postman, and GraphQL specifications.
+  version: 1.0.0
+  contact:
+    name: Theneo
+    url: https://www.theneo.io/
+  license:
+    name: Proprietary
+    url: https://www.theneo.io/
+servers:
+- url: https://api.theneo.io
+  description: Theneo API
+security:
+- apiKey: []
+tags:
+- name: Workspaces
+  description: Manage workspaces.
+paths:
+  /workspaces:
+    get:
+      operationId: listWorkspaces
+      summary: List Workspaces
+      description: Retrieves a list of all workspaces available to the authenticated user.
+      tags:
+      - Workspaces
+      responses:
+        '200':
+          description: A list of workspaces.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Workspace'
+        '401':
+          description: Unauthorized. Invalid or missing API key.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+components:
+  schemas:
+    Workspace:
+      type: object
+      properties:
+        id:
+          type: string
+          description: The unique identifier of the workspace.
+        name:
+          type: string
+          description: The name of the workspace.
+        slug:
+          type: string
+          description: The URL-friendly slug of the workspace.
+    Error:
+      type: object
+      properties:
+        error:
+          type: string
+          description: Error type or code.
+        message:
+          type: string
+          description: A human-readable error message.
+  securitySchemes:
+    apiKey:
+      type: apiKey
+      name: Authorization
+      in: header
+      description: API key for authentication. Generate from the Theneo dashboard. Can also be set via the THENEO_API_KEY environment variable when using the CLI or SDK.

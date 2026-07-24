@@ -1,0 +1,226 @@
+openapi: 3.1.0
+info:
+  title: Theneo Import Users API
+  description: The Theneo API provides programmatic access to manage API documentation projects, workspaces, user access, and API specification imports on the Theneo platform. Theneo is an AI-powered API documentation tool that generates interactive docs from OpenAPI, Swagger, Postman, and GraphQL specifications.
+  version: 1.0.0
+  contact:
+    name: Theneo
+    url: https://www.theneo.io/
+  license:
+    name: Proprietary
+    url: https://www.theneo.io/
+servers:
+- url: https://api.theneo.io
+  description: Theneo API
+security:
+- apiKey: []
+tags:
+- name: Users
+  description: Manage user access to projects.
+paths:
+  /projects/{projectId}/users:
+    get:
+      operationId: getAccessibleUsers
+      summary: Get Accessible Users
+      description: Retrieves the list of users who have access to the specified project.
+      tags:
+      - Users
+      parameters:
+      - name: projectId
+        in: path
+        required: true
+        description: The unique identifier of the project.
+        schema:
+          type: string
+      responses:
+        '200':
+          description: A list of users with access to the project.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ProjectUser'
+        '401':
+          description: Unauthorized. Invalid or missing API key.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '404':
+          description: Project not found.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+  /projects/{projectId}/share:
+    post:
+      operationId: shareProject
+      summary: Share A Project
+      description: Shares a project with specified users by granting them access.
+      tags:
+      - Users
+      parameters:
+      - name: projectId
+        in: path
+        required: true
+        description: The unique identifier of the project.
+        schema:
+          type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ShareProjectRequest'
+      responses:
+        '200':
+          description: Project shared successfully.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SuccessResponse'
+        '400':
+          description: Bad request. Invalid parameters.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '401':
+          description: Unauthorized. Invalid or missing API key.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '404':
+          description: Project not found.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+  /projects/{projectId}/users/{userId}:
+    patch:
+      operationId: changeUserAccess
+      summary: Change User Access To A Project
+      description: Updates the access role of a user on a specific project.
+      tags:
+      - Users
+      parameters:
+      - name: projectId
+        in: path
+        required: true
+        description: The unique identifier of the project.
+        schema:
+          type: string
+      - name: userId
+        in: path
+        required: true
+        description: The unique identifier of the user.
+        schema:
+          type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ChangeUserAccessRequest'
+      responses:
+        '200':
+          description: User access updated successfully.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SuccessResponse'
+        '400':
+          description: Bad request. Invalid parameters.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '401':
+          description: Unauthorized. Invalid or missing API key.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '404':
+          description: Project or user not found.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+components:
+  schemas:
+    SuccessResponse:
+      type: object
+      properties:
+        success:
+          type: boolean
+          description: Whether the operation was successful.
+        message:
+          type: string
+          description: A message describing the result.
+    ChangeUserAccessRequest:
+      type: object
+      required:
+      - role
+      properties:
+        role:
+          type: string
+          enum:
+          - viewer
+          - editor
+          - admin
+          description: The new access role for the user.
+    ShareProjectRequest:
+      type: object
+      required:
+      - email
+      properties:
+        email:
+          type: string
+          format: email
+          description: The email address of the user to share the project with.
+        role:
+          type: string
+          enum:
+          - viewer
+          - editor
+          - admin
+          description: The access role to assign to the user.
+          default: viewer
+    Error:
+      type: object
+      properties:
+        error:
+          type: string
+          description: Error type or code.
+        message:
+          type: string
+          description: A human-readable error message.
+    ProjectUser:
+      type: object
+      properties:
+        id:
+          type: string
+          description: The unique identifier of the user.
+        email:
+          type: string
+          format: email
+          description: The email address of the user.
+        role:
+          type: string
+          enum:
+          - viewer
+          - editor
+          - admin
+          description: The access role of the user on the project.
+        name:
+          type: string
+          description: The name of the user.
+  securitySchemes:
+    apiKey:
+      type: apiKey
+      name: Authorization
+      in: header
+      description: API key for authentication. Generate from the Theneo dashboard. Can also be set via the THENEO_API_KEY environment variable when using the CLI or SDK.

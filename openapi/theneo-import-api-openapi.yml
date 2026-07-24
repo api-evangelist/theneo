@@ -1,0 +1,111 @@
+openapi: 3.1.0
+info:
+  title: Theneo Import API
+  description: The Theneo API provides programmatic access to manage API documentation projects, workspaces, user access, and API specification imports on the Theneo platform. Theneo is an AI-powered API documentation tool that generates interactive docs from OpenAPI, Swagger, Postman, and GraphQL specifications.
+  version: 1.0.0
+  contact:
+    name: Theneo
+    url: https://www.theneo.io/
+  license:
+    name: Proprietary
+    url: https://www.theneo.io/
+servers:
+- url: https://api.theneo.io
+  description: Theneo API
+security:
+- apiKey: []
+tags:
+- name: Import
+  description: Import API specifications into projects.
+paths:
+  /projects/{projectId}/import:
+    post:
+      operationId: importApiSpecification
+      summary: Import API Specification
+      description: Imports an API specification file into an existing project. Supports OpenAPI/Swagger, Postman Collections, GraphQL, gRPC, SOAP/WSDL, and AsyncAPI formats. The import can be done via file upload, URL, or text.
+      tags:
+      - Import
+      parameters:
+      - name: projectId
+        in: path
+        required: true
+        description: The unique identifier of the project.
+        schema:
+          type: string
+      requestBody:
+        required: true
+        content:
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/ImportSpecificationRequest'
+      responses:
+        '200':
+          description: API specification imported successfully.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SuccessResponse'
+        '400':
+          description: Bad request. Invalid specification or parameters.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '401':
+          description: Unauthorized. Invalid or missing API key.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '404':
+          description: Project not found.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+components:
+  schemas:
+    ImportSpecificationRequest:
+      type: object
+      properties:
+        file:
+          type: string
+          format: binary
+          description: The API specification file to import.
+        link:
+          type: string
+          format: uri
+          description: URL to an API specification file to import.
+        importType:
+          type: string
+          enum:
+          - endpoints
+          - overwrite
+          - append
+          - merge
+          description: The import strategy to use. "endpoints" imports only endpoints, "overwrite" replaces the existing spec, "append" adds to the existing spec, and "merge" merges with the existing spec.
+          default: overwrite
+    Error:
+      type: object
+      properties:
+        error:
+          type: string
+          description: Error type or code.
+        message:
+          type: string
+          description: A human-readable error message.
+    SuccessResponse:
+      type: object
+      properties:
+        success:
+          type: boolean
+          description: Whether the operation was successful.
+        message:
+          type: string
+          description: A message describing the result.
+  securitySchemes:
+    apiKey:
+      type: apiKey
+      name: Authorization
+      in: header
+      description: API key for authentication. Generate from the Theneo dashboard. Can also be set via the THENEO_API_KEY environment variable when using the CLI or SDK.
