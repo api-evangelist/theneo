@@ -1,54 +1,176 @@
 aid: theneo
 url: https://raw.githubusercontent.com/api-evangelist/theneo/refs/heads/main/apis.yml
 apis:
-- aid: theneo:theneo
-  name: Theneo
-  tags:
-  - API Documentation
-  - Developer Portal
-  - Developer Tools
-  - Documentation Platform
-  - AI
-  - AI Co-Pilot
-  - MCP
-  - OpenAPI
+- aid: theneo:theneo-import-api
+  name: Theneo Import API
+  description: Import API specifications into projects.
   humanURL: https://www.theneo.io/
   baseURL: https://api.theneo.io
+  tags:
+  - Import
   properties:
-  - url: https://www.theneo.io/
-    type: Documentation
-  - url: openapi/theneo-api-openapi.yml
-    type: OpenAPI
-  - url: json-schema/project.json
-    type: JSONSchema
-  - url: json-schema/workspace.json
-    type: JSONSchema
-  - url: json-schema/project-user.json
-    type: JSONSchema
-  - url: json-ld/theneo-context.jsonld
-    type: JSONLD
-  - url: json-structure/theneo-project-structure.json
-    type: JSONStructure
-  - url: rules/theneo-rules.yml
-    type: SpectralRules
-  - url: vocabulary/theneo-vocabulary.yml
-    type: Vocabulary
+  - type: OpenAPI
+    url: openapi/theneo-import-api-openapi.yml
+  - type: Documentation
+    url: https://www.theneo.io/
+  - type: JSONSchema
+    url: json-schema/project.json
+  - type: JSONSchema
+    url: json-schema/workspace.json
+  - type: JSONSchema
+    url: json-schema/project-user.json
+  - type: JSONLD
+    url: json-ld/theneo-context.jsonld
+  - type: JSONStructure
+    url: json-structure/theneo-project-structure.json
+  - type: SpectralRules
+    url: rules/theneo-rules.yml
+  - type: Vocabulary
+    url: vocabulary/theneo-vocabulary.yml
   - type: Plans
     url: plans/theneo-plans-pricing.yml
   - type: RateLimits
     url: rate-limits/theneo-rate-limits.yml
   - type: FinOps
     url: finops/theneo-finops.yml
-  - url: graphql/theneo-graphql.md
-    type: GraphQL
-  description: >-
-    The Theneo API provides programmatic access to manage API documentation projects, workspaces, user access, and API
-    specification imports on the Theneo platform. Supports creating, publishing, and sharing AI-generated API
-    documentation built from OpenAPI, Swagger, Postman, GraphQL, gRPC, SOAP/WSDL, and AsyncAPI specifications. Pairs
-    with the @theneo/cli and @theneo/sdk npm packages and the Theneo GitHub Action for CI-driven docs updates.
-  contact:
-  - FN: Theneo Support
-    url: https://www.theneo.io/contact
+  - type: GraphQL
+    url: graphql/theneo-graphql.md
+- aid: theneo:theneo-projects-api
+  name: Theneo Projects API
+  description: Manage API documentation projects.
+  humanURL: https://www.theneo.io/
+  baseURL: https://api.theneo.io
+  tags:
+  - Projects
+  properties:
+  - type: OpenAPI
+    url: openapi/theneo-projects-api-openapi.yml
+  - type: Documentation
+    url: https://www.theneo.io/
+  - type: JSONSchema
+    url: json-schema/project.json
+  - type: JSONSchema
+    url: json-schema/workspace.json
+  - type: JSONSchema
+    url: json-schema/project-user.json
+  - type: JSONLD
+    url: json-ld/theneo-context.jsonld
+  - type: JSONStructure
+    url: json-structure/theneo-project-structure.json
+  - type: SpectralRules
+    url: rules/theneo-rules.yml
+  - type: Vocabulary
+    url: vocabulary/theneo-vocabulary.yml
+  - type: Plans
+    url: plans/theneo-plans-pricing.yml
+  - type: RateLimits
+    url: rate-limits/theneo-rate-limits.yml
+  - type: FinOps
+    url: finops/theneo-finops.yml
+  - type: GraphQL
+    url: graphql/theneo-graphql.md
+- aid: theneo:theneo-publishing-api
+  name: Theneo Publishing API
+  description: Publish and preview documentation.
+  humanURL: https://www.theneo.io/
+  baseURL: https://api.theneo.io
+  tags:
+  - Publishing
+  properties:
+  - type: OpenAPI
+    url: openapi/theneo-publishing-api-openapi.yml
+  - type: Documentation
+    url: https://www.theneo.io/
+  - type: JSONSchema
+    url: json-schema/project.json
+  - type: JSONSchema
+    url: json-schema/workspace.json
+  - type: JSONSchema
+    url: json-schema/project-user.json
+  - type: JSONLD
+    url: json-ld/theneo-context.jsonld
+  - type: JSONStructure
+    url: json-structure/theneo-project-structure.json
+  - type: SpectralRules
+    url: rules/theneo-rules.yml
+  - type: Vocabulary
+    url: vocabulary/theneo-vocabulary.yml
+  - type: Plans
+    url: plans/theneo-plans-pricing.yml
+  - type: RateLimits
+    url: rate-limits/theneo-rate-limits.yml
+  - type: FinOps
+    url: finops/theneo-finops.yml
+  - type: GraphQL
+    url: graphql/theneo-graphql.md
+- aid: theneo:theneo-users-api
+  name: Theneo Users API
+  description: Manage user access to projects.
+  humanURL: https://www.theneo.io/
+  baseURL: https://api.theneo.io
+  tags:
+  - Users
+  properties:
+  - type: OpenAPI
+    url: openapi/theneo-users-api-openapi.yml
+  - type: Documentation
+    url: https://www.theneo.io/
+  - type: JSONSchema
+    url: json-schema/project.json
+  - type: JSONSchema
+    url: json-schema/workspace.json
+  - type: JSONSchema
+    url: json-schema/project-user.json
+  - type: JSONLD
+    url: json-ld/theneo-context.jsonld
+  - type: JSONStructure
+    url: json-structure/theneo-project-structure.json
+  - type: SpectralRules
+    url: rules/theneo-rules.yml
+  - type: Vocabulary
+    url: vocabulary/theneo-vocabulary.yml
+  - type: Plans
+    url: plans/theneo-plans-pricing.yml
+  - type: RateLimits
+    url: rate-limits/theneo-rate-limits.yml
+  - type: FinOps
+    url: finops/theneo-finops.yml
+  - type: GraphQL
+    url: graphql/theneo-graphql.md
+- aid: theneo:theneo-workspaces-api
+  name: Theneo Workspaces API
+  description: Manage workspaces.
+  humanURL: https://www.theneo.io/
+  baseURL: https://api.theneo.io
+  tags:
+  - Workspaces
+  properties:
+  - type: OpenAPI
+    url: openapi/theneo-workspaces-api-openapi.yml
+  - type: Documentation
+    url: https://www.theneo.io/
+  - type: JSONSchema
+    url: json-schema/project.json
+  - type: JSONSchema
+    url: json-schema/workspace.json
+  - type: JSONSchema
+    url: json-schema/project-user.json
+  - type: JSONLD
+    url: json-ld/theneo-context.jsonld
+  - type: JSONStructure
+    url: json-structure/theneo-project-structure.json
+  - type: SpectralRules
+    url: rules/theneo-rules.yml
+  - type: Vocabulary
+    url: vocabulary/theneo-vocabulary.yml
+  - type: Plans
+    url: plans/theneo-plans-pricing.yml
+  - type: RateLimits
+    url: rate-limits/theneo-rate-limits.yml
+  - type: FinOps
+    url: finops/theneo-finops.yml
+  - type: GraphQL
+    url: graphql/theneo-graphql.md
 name: Theneo
 tags:
 - API Documentation
@@ -60,7 +182,20 @@ tags:
 - MCP
 - Platform
 kind: contract
-image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+accessModel:
+  pricing: paid
+  onboarding: self-serve
+  trial: false
+  try_now: false
+  public: false
+  label: Paid · Self-serve signup
+  confidence: high
+  source:
+  - plans
+  - authentication
+  generated: '2026-07-22'
+  method: derived
+image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/icons/theneo.png
 access: 3rd-Party
 created: '2025-01-08'
 modified: '2026-05-22'
@@ -77,6 +212,8 @@ maintainers:
   email: kin@apievangelist.com
 specificationVersion: '0.19'
 common:
+- type: PostmanWorkspace
+  url: https://www.postman.com/kinlaneapi/theneo/overview
 - type: AgenticAccess
   url: agentic-access/theneo-agentic-access.yml
 - type: TrustCenter
