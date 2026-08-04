@@ -1,0 +1,22 @@
+{
+  "provider": "theneo",
+  "sources": [
+    "theneo-import-api-openapi.yml",
+    "theneo-projects-api-openapi.yml",
+    "theneo-publishing-api-openapi.yml",
+    "theneo-users-api-openapi.yml",
+    "theneo-workspaces-api-openapi.yml"
+  ],
+  "outputs": [
+    "theneo-import-api-openapi.yml",
+    "theneo-projects-api-openapi.yml",
+    "theneo-publishing-api-openapi.yml",
+    "theneo-users-api-openapi.yml",
+    "theneo-workspaces-api-openapi.yml"
+  ],
+  "archived": [],
+  "errors": [],
+  "warnings": [],
+  "notes": [],
+  "skipped": []
+}

@@ -1,0 +1,435 @@
+{
+  "info": {
+    "_postman_id": "93517054-83e8-435e-ae96-e2ea645b625b",
+    "name": "Theneo Import API",
+    "description": "The Theneo API provides programmatic access to manage API documentation projects, workspaces, user access, and API specification imports on the Theneo platform. Theneo is an AI-powered API documentation tool that generates interactive docs from OpenAPI, Swagger, Postman, and GraphQL specifications.\n\nContact Support:\n Name: Theneo",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T03:10:53.000Z",
+    "updatedAt": "2026-07-28T03:10:53.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-93517054-83e8-435e-ae96-e2ea645b625b"
+  },
+  "item": [
+    {
+      "name": "projects",
+      "item": [
+        {
+          "name": "{projectId}",
+          "item": [
+            {
+              "name": "import",
+              "item": [
+                {
+                  "name": "Import API Specification",
+                  "id": "9768c42b-7576-4bc0-a8ec-4ae455842cfe",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "multipart/form-data"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "formdata",
+                      "formdata": [
+                        {
+                          "description": "The API specification file to import.",
+                          "key": "file",
+                          "type": "file",
+                          "value": null
+                        },
+                        {
+                          "description": "URL to an API specification file to import.",
+                          "key": "link",
+                          "value": "<uri>",
+                          "type": "text"
+                        },
+                        {
+                          "description": "The import strategy to use. \"endpoints\" imports only endpoints, \"overwrite\" replaces the existing spec, \"append\" adds to the existing spec, and \"merge\" merges with the existing spec. (This can only be one of endpoints,overwrite,append,merge)",
+                          "key": "importType",
+                          "value": "overwrite",
+                          "type": "text"
+                        }
+                      ]
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/projects/:projectId/import",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "projects",
+                        ":projectId",
+                        "import"
+                      ],
+                      "variable": [
+                        {
+                          "id": "f3e5a41a-de32-44a8-a726-b2c7cad4e923",
+                          "key": "projectId",
+                          "value": "<string>",
+                          "description": "(Required) The unique identifier of the project."
+                        }
+                      ]
+                    },
+                    "description": "Imports an API specification file into an existing project. Supports OpenAPI/Swagger, Postman Collections, GraphQL, gRPC, SOAP/WSDL, and AsyncAPI formats. The import can be done via file upload, URL, or text."
+                  },
+                  "response": [
+                    {
+                      "id": "4978d0f2-a812-4955-a5fb-106a349b151e",
+                      "name": "API specification imported successfully.",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "multipart/form-data"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "Authorization",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "formdata",
+                          "formdata": [
+                            {
+                              "description": "The API specification file to import.",
+                              "key": "file",
+                              "type": "file"
+                            },
+                            {
+                              "description": "URL to an API specification file to import.",
+                              "key": "link",
+                              "value": "<uri>",
+                              "type": "text"
+                            },
+                            {
+                              "description": "The import strategy to use. \"endpoints\" imports only endpoints, \"overwrite\" replaces the existing spec, \"append\" adds to the existing spec, and \"merge\" merges with the existing spec. (This can only be one of endpoints,overwrite,append,merge)",
+                              "key": "importType",
+                              "value": "overwrite",
+                              "type": "text"
+                            }
+                          ]
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/projects/:projectId/import",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "projects",
+                            ":projectId",
+                            "import"
+                          ],
+                          "variable": [
+                            {
+                              "key": "projectId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"success\": \"<boolean>\",\n  \"message\": \"<string>\"\n}",
+                      "createdAt": "2026-07-28T03:10:53.000Z",
+                      "updatedAt": "2026-07-28T03:10:53.000Z",
+                      "uid": "35240-4978d0f2-a812-4955-a5fb-106a349b151e"
+                    },
+                    {
+                      "id": "d7db7755-e754-4200-a754-34da7636a1e8",
+                      "name": "Bad request. Invalid specification or parameters.",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "multipart/form-data"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "Authorization",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "formdata",
+                          "formdata": [
+                            {
+                              "description": "The API specification file to import.",
+                              "key": "file",
+                              "type": "file"
+                            },
+                            {
+                              "description": "URL to an API specification file to import.",
+                              "key": "link",
+                              "value": "<uri>",
+                              "type": "text"
+                            },
+                            {
+                              "description": "The import strategy to use. \"endpoints\" imports only endpoints, \"overwrite\" replaces the existing spec, \"append\" adds to the existing spec, and \"merge\" merges with the existing spec. (This can only be one of endpoints,overwrite,append,merge)",
+                              "key": "importType",
+                              "value": "overwrite",
+                              "type": "text"
+                            }
+                          ]
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/projects/:projectId/import",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "projects",
+                            ":projectId",
+                            "import"
+                          ],
+                          "variable": [
+                            {
+                              "key": "projectId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Bad Request",
+                      "code": 400,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"error\": \"<string>\",\n  \"message\": \"<string>\"\n}",
+                      "createdAt": "2026-07-28T03:10:53.000Z",
+                      "updatedAt": "2026-07-28T03:10:53.000Z",
+                      "uid": "35240-d7db7755-e754-4200-a754-34da7636a1e8"
+                    },
+                    {
+                      "id": "472e881e-93e4-4f8c-8d73-95cf9a31ddd1",
+                      "name": "Unauthorized. Invalid or missing API key.",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "multipart/form-data"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "Authorization",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "formdata",
+                          "formdata": [
+                            {
+                              "description": "The API specification file to import.",
+                              "key": "file",
+                              "type": "file"
+                            },
+                            {
+                              "description": "URL to an API specification file to import.",
+                              "key": "link",
+                              "value": "<uri>",
+                              "type": "text"
+                            },
+                            {
+                              "description": "The import strategy to use. \"endpoints\" imports only endpoints, \"overwrite\" replaces the existing spec, \"append\" adds to the existing spec, and \"merge\" merges with the existing spec. (This can only be one of endpoints,overwrite,append,merge)",
+                              "key": "importType",
+                              "value": "overwrite",
+                              "type": "text"
+                            }
+                          ]
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/projects/:projectId/import",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "projects",
+                            ":projectId",
+                            "import"
+                          ],
+                          "variable": [
+                            {
+                              "key": "projectId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Unauthorized",
+                      "code": 401,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"error\": \"<string>\",\n  \"message\": \"<string>\"\n}",
+                      "createdAt": "2026-07-28T03:10:53.000Z",
+                      "updatedAt": "2026-07-28T03:10:53.000Z",
+                      "uid": "35240-472e881e-93e4-4f8c-8d73-95cf9a31ddd1"
+                    },
+                    {
+                      "id": "1fee087d-65bb-41f7-a420-e8b4461d99d7",
+                      "name": "Project not found.",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "multipart/form-data"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "Authorization",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "formdata",
+                          "formdata": [
+                            {
+                              "description": "The API specification file to import.",
+                              "key": "file",
+                              "type": "file"
+                            },
+                            {
+                              "description": "URL to an API specification file to import.",
+                              "key": "link",
+                              "value": "<uri>",
+                              "type": "text"
+                            },
+                            {
+                              "description": "The import strategy to use. \"endpoints\" imports only endpoints, \"overwrite\" replaces the existing spec, \"append\" adds to the existing spec, and \"merge\" merges with the existing spec. (This can only be one of endpoints,overwrite,append,merge)",
+                              "key": "importType",
+                              "value": "overwrite",
+                              "type": "text"
+                            }
+                          ]
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/projects/:projectId/import",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "projects",
+                            ":projectId",
+                            "import"
+                          ],
+                          "variable": [
+                            {
+                              "key": "projectId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Not Found",
+                      "code": 404,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"error\": \"<string>\",\n  \"message\": \"<string>\"\n}",
+                      "createdAt": "2026-07-28T03:10:53.000Z",
+                      "updatedAt": "2026-07-28T03:10:53.000Z",
+                      "uid": "35240-1fee087d-65bb-41f7-a420-e8b4461d99d7"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T03:10:53.000Z",
+                  "updatedAt": "2026-07-28T03:10:53.000Z",
+                  "uid": "35240-9768c42b-7576-4bc0-a8ec-4ae455842cfe"
+                }
+              ],
+              "id": "f838e014-3afb-4f8d-be1a-0ae7438fcd82",
+              "createdAt": "2026-07-28T03:10:53.000Z",
+              "updatedAt": "2026-07-28T03:10:53.000Z",
+              "uid": "35240-f838e014-3afb-4f8d-be1a-0ae7438fcd82"
+            }
+          ],
+          "id": "c6ac9d83-ffe3-43b4-80a1-71b626f23fe2",
+          "createdAt": "2026-07-28T03:10:53.000Z",
+          "updatedAt": "2026-07-28T03:10:53.000Z",
+          "uid": "35240-c6ac9d83-ffe3-43b4-80a1-71b626f23fe2"
+        }
+      ],
+      "id": "cacf8e10-8448-4c82-b21c-eb13e471b871",
+      "createdAt": "2026-07-28T03:10:53.000Z",
+      "updatedAt": "2026-07-28T03:10:53.000Z",
+      "uid": "35240-cacf8e10-8448-4c82-b21c-eb13e471b871"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "Authorization",
+        "type": "string"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}",
+        "type": "string"
+      },
+      {
+        "key": "in",
+        "value": "header",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://api.theneo.io"
+    }
+  ]
+}
