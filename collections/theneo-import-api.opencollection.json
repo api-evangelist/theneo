@@ -1,0 +1,49 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Theneo Import API",
+    "version": "1.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "Authorization",
+      "value": "{{Authorization}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Import",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Import API Specification",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.theneo.io/projects/:projectId/import",
+            "params": [
+              {
+                "name": "projectId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier of the project."
+              }
+            ],
+            "body": {
+              "type": "multipart-form",
+              "data": []
+            }
+          },
+          "docs": "Imports an API specification file into an existing project. Supports OpenAPI/Swagger, Postman Collections, GraphQL, gRPC, SOAP/WSDL, and AsyncAPI formats. The import can be done via file upload, URL, or text."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

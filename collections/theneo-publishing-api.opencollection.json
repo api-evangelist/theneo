@@ -1,0 +1,64 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Theneo Import Publishing API",
+    "version": "1.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "Authorization",
+      "value": "{{Authorization}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Publishing",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Publish Project",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.theneo.io/projects/:projectId/publish",
+            "params": [
+              {
+                "name": "projectId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier of the project."
+              }
+            ]
+          },
+          "docs": "Publishes the API documentation for a project, making it publicly accessible at its documentation URL."
+        },
+        {
+          "info": {
+            "name": "Get Preview Project Link",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.theneo.io/projects/:projectId/preview",
+            "params": [
+              {
+                "name": "projectId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier of the project."
+              }
+            ]
+          },
+          "docs": "Returns a preview link for the project documentation before it is published."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}
