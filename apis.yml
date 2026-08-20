@@ -41,6 +41,8 @@ apis:
   humanURL: https://www.theneo.io/
   baseURL: https://api.theneo.io
   tags:
+  - Project
+  tags_raw:
   - Projects
   properties:
   - type: OpenAPI
@@ -109,6 +111,8 @@ apis:
   humanURL: https://www.theneo.io/
   baseURL: https://api.theneo.io
   tags:
+  - User
+  tags_raw:
   - Users
   properties:
   - type: OpenAPI
@@ -173,6 +177,15 @@ apis:
     url: graphql/theneo-graphql.md
 name: Theneo
 tags:
+- API Documentation
+- Developer Portal
+- Developer Tools
+- Documentation Platform
+- Artificial Intelligence
+- AI Copilot
+- MCP
+- Platform
+tags_raw:
 - API Documentation
 - Developer Portal
 - Developer Tools
