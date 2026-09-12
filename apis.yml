@@ -239,6 +239,8 @@ maintainers:
   email: kin@apievangelist.com
 specificationVersion: '0.23'
 common:
+- type: Website
+  url: https://www.theneo.io/
 - type: PostmanWorkspace
   url: https://www.postman.com/kinlaneapi/theneo/overview
 - type: AgenticAccess
