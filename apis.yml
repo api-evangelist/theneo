@@ -147,6 +147,8 @@ apis:
   humanURL: https://www.theneo.io/
   baseURL: https://api.theneo.io
   tags:
+  - Workspace
+  tags_raw:
   - Workspaces
   properties:
   - type: OpenAPI
