@@ -1,11 +1,7 @@
 {
   "provider": "theneo",
   "sources": [
-    "theneo-import-api-openapi.yml",
-    "theneo-projects-api-openapi.yml",
-    "theneo-publishing-api-openapi.yml",
-    "theneo-users-api-openapi.yml",
-    "theneo-workspaces-api-openapi.yml"
+    "_original/theneo-api-openapi.yml"
   ],
   "outputs": [
     "theneo-import-api-openapi.yml",
@@ -17,6 +13,16 @@
   "archived": [],
   "errors": [],
   "warnings": [],
-  "notes": [],
-  "skipped": []
+  "notes": [
+    "sourced from openapi/_original/ (1 archived document(s)); previously refined output at the top level was skipped rather than re-split",
+    "theneo-api-openapi.yml: upgraded openapi 3.1.0 -> OpenAPI 3.2.0",
+    "apis.yml register: already-registered"
+  ],
+  "skipped": [
+    "theneo-import-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "theneo-projects-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "theneo-publishing-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "theneo-users-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "theneo-workspaces-api-openapi.yml: previously refined output, superseded by openapi/_original/"
+  ]
 }
