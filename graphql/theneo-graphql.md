@@ -1,1 +1,0 @@
-# Theneo GraphQL API

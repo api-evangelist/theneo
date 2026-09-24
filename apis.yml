@@ -33,8 +33,6 @@ apis:
     url: rate-limits/theneo-rate-limits.yml
   - type: FinOps
     url: finops/theneo-finops.yml
-  - type: GraphQL
-    url: graphql/theneo-graphql.md
 - aid: theneo:theneo-projects-api
   name: Theneo Projects API
   description: Manage API documentation projects.
@@ -69,8 +67,6 @@ apis:
     url: rate-limits/theneo-rate-limits.yml
   - type: FinOps
     url: finops/theneo-finops.yml
-  - type: GraphQL
-    url: graphql/theneo-graphql.md
 - aid: theneo:theneo-publishing-api
   name: Theneo Publishing API
   description: Publish and preview documentation.
@@ -103,8 +99,6 @@ apis:
     url: rate-limits/theneo-rate-limits.yml
   - type: FinOps
     url: finops/theneo-finops.yml
-  - type: GraphQL
-    url: graphql/theneo-graphql.md
 - aid: theneo:theneo-users-api
   name: Theneo Users API
   description: Manage user access to projects.
@@ -139,8 +133,6 @@ apis:
     url: rate-limits/theneo-rate-limits.yml
   - type: FinOps
     url: finops/theneo-finops.yml
-  - type: GraphQL
-    url: graphql/theneo-graphql.md
 - aid: theneo:theneo-workspaces-api
   name: Theneo Workspaces API
   description: Manage workspaces.
@@ -175,8 +167,6 @@ apis:
     url: rate-limits/theneo-rate-limits.yml
   - type: FinOps
     url: finops/theneo-finops.yml
-  - type: GraphQL
-    url: graphql/theneo-graphql.md
 name: Theneo
 tags:
 - API Documentation
