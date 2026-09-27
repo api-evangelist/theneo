@@ -180,6 +180,23 @@ components:
         message:
           type: string
           description: A human-readable error message.
+    ShareProjectRequest:
+      type: object
+      required:
+      - email
+      properties:
+        email:
+          type: string
+          format: email
+          description: The email address of the user to share the project with.
+        role:
+          type: string
+          enum:
+          - viewer
+          - editor
+          - admin
+          description: The access role to assign to the user.
+          default: viewer
     SuccessResponse:
       type: object
       properties:
@@ -201,23 +218,6 @@ components:
           - editor
           - admin
           description: The new access role for the user.
-    ShareProjectRequest:
-      type: object
-      required:
-      - email
-      properties:
-        email:
-          type: string
-          format: email
-          description: The email address of the user to share the project with.
-        role:
-          type: string
-          enum:
-          - viewer
-          - editor
-          - admin
-          description: The access role to assign to the user.
-          default: viewer
   securitySchemes:
     apiKey:
       type: apiKey
