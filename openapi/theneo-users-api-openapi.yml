@@ -171,6 +171,18 @@ components:
         name:
           type: string
           description: The name of the user.
+    ChangeUserAccessRequest:
+      type: object
+      required:
+      - role
+      properties:
+        role:
+          type: string
+          enum:
+          - viewer
+          - editor
+          - admin
+          description: The new access role for the user.
     Error:
       type: object
       properties:
@@ -180,6 +192,15 @@ components:
         message:
           type: string
           description: A human-readable error message.
+    SuccessResponse:
+      type: object
+      properties:
+        success:
+          type: boolean
+          description: Whether the operation was successful.
+        message:
+          type: string
+          description: A message describing the result.
     ShareProjectRequest:
       type: object
       required:
@@ -197,27 +218,6 @@ components:
           - admin
           description: The access role to assign to the user.
           default: viewer
-    SuccessResponse:
-      type: object
-      properties:
-        success:
-          type: boolean
-          description: Whether the operation was successful.
-        message:
-          type: string
-          description: A message describing the result.
-    ChangeUserAccessRequest:
-      type: object
-      required:
-      - role
-      properties:
-        role:
-          type: string
-          enum:
-          - viewer
-          - editor
-          - admin
-          description: The new access role for the user.
   securitySchemes:
     apiKey:
       type: apiKey

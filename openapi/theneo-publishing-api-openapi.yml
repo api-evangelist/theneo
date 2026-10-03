@@ -86,6 +86,13 @@ paths:
                 $ref: '#/components/schemas/Error'
 components:
   schemas:
+    PreviewLinkResponse:
+      type: object
+      properties:
+        url:
+          type: string
+          format: uri
+          description: The preview URL for the project documentation.
     Error:
       type: object
       properties:
@@ -105,13 +112,6 @@ components:
           type: string
           format: uri
           description: The public URL of the published documentation.
-    PreviewLinkResponse:
-      type: object
-      properties:
-        url:
-          type: string
-          format: uri
-          description: The preview URL for the project documentation.
   securitySchemes:
     apiKey:
       type: apiKey
