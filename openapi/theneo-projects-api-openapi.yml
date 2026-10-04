@@ -138,42 +138,6 @@ paths:
                 $ref: '#/components/schemas/Error'
 components:
   schemas:
-    Error:
-      type: object
-      properties:
-        error:
-          type: string
-          description: Error type or code.
-        message:
-          type: string
-          description: A human-readable error message.
-    CreateProjectRequest:
-      type: object
-      required:
-      - name
-      properties:
-        name:
-          type: string
-          description: The name of the new project.
-        workspace:
-          type: string
-          description: The workspace slug where the project should be created.
-        description:
-          type: string
-          description: A description for the project.
-        file:
-          type: string
-          description: Path to an API specification file to import during creation.
-        link:
-          type: string
-          format: uri
-          description: URL to an API specification file to import during creation.
-        sample:
-          type: boolean
-          description: Whether to create the project with sample data.
-        publish:
-          type: boolean
-          description: Whether to publish the project immediately after creation.
     Project:
       type: object
       properties:
@@ -212,6 +176,42 @@ components:
         message:
           type: string
           description: A message describing the result.
+    CreateProjectRequest:
+      type: object
+      required:
+      - name
+      properties:
+        name:
+          type: string
+          description: The name of the new project.
+        workspace:
+          type: string
+          description: The workspace slug where the project should be created.
+        description:
+          type: string
+          description: A description for the project.
+        file:
+          type: string
+          description: Path to an API specification file to import during creation.
+        link:
+          type: string
+          format: uri
+          description: URL to an API specification file to import during creation.
+        sample:
+          type: boolean
+          description: Whether to create the project with sample data.
+        publish:
+          type: boolean
+          description: Whether to publish the project immediately after creation.
+    Error:
+      type: object
+      properties:
+        error:
+          type: string
+          description: Error type or code.
+        message:
+          type: string
+          description: A human-readable error message.
   securitySchemes:
     apiKey:
       type: apiKey

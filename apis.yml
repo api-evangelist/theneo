@@ -1,5 +1,164 @@
 aid: theneo
+
 url: https://raw.githubusercontent.com/api-evangelist/theneo/refs/heads/main/apis.yml
+
+name: Theneo
+
+tags:
+- API Documentation
+- Developer Portal
+- Developer Tools
+- Documentation Platform
+- Artificial Intelligence
+- AI Copilot
+- MCP
+- Platform
+
+kind: contract
+
+deliveryModel:
+  model: saas
+  license_evidence:
+    not_product:
+    - theneo-inc/cartlis
+  open_source: unknown
+  commercial: true
+  callable_host: true
+  label: Hosted service · you call their endpoint
+  confidence: low
+  source:
+  - openapi
+  - pricing
+  - repository-not-product
+  generated: '2026-09-25'
+  method: derived
+
+accessModel:
+  pricing: paid
+  onboarding: unknown
+  trial: false
+  try_now: false
+  public: false
+  label: Paid
+  confidence: medium
+  source:
+  - plans
+  - authentication
+  - security
+  generated: '2026-09-03'
+  method: derived
+
+image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/icons/theneo.png
+
+access: 3rd-Party
+
+created: '2025-01-08'
+
+modified: '2026-05-22'
+
+position: Consuming
+
+description: >-
+  Beautiful, up-to-date docs without the effort. Theneo is an AI-native API documentation and developer portal platform
+  that auto-generates interactive docs from OpenAPI, Swagger, Postman, GraphQL, gRPC, SOAP/WSDL, and AsyncAPI
+  specifications. Its AI Co-pilot can fully generate, enhance, or stay out of the way of human-authored content, while
+  Ask AI Bot, MCP server integration, llms.txt support, smart changelogs, and the Elva API management platform extend
+  the same surface to AI agents. Used by 15,000+ teams including Ticketmaster, Corpay, and SimilarWeb; backed by Y
+  Combinator; SOC 2 Type II, ISO 27001, ISO 9001, and GDPR compliant.
+
+maintainers:
+- FN: Kin Lane
+  email: kin@apievangelist.com
+
+specificationVersion: '0.23'
+
+common:
+- type: Spectral
+  url: rules/theneo-rules.yml
+- type: Spectral
+  url: rules/theneo-jsonschema-spectral-rules.yml
+- type: AgentSkill
+  url: skills/_index.yml
+- type: DataModel
+  url: data-model/theneo-data-model.yml
+- type: Compliance
+  url: https://www.theneo.io/security
+- type: ErrorCatalog
+  url: errors/theneo-problem-types.yml
+- type: Conformance
+  url: conformance/theneo-conformance.yml
+- type: LLMsTxt
+  url: llms/theneo-llms.txt
+- type: SecurityTxt
+  url: well-known/theneo-calendly-security.txt
+- type: SecurityTxt
+  url: well-known/theneo-api-security.txt
+- type: WellKnown
+  url: well-known/theneo-well-known.yml
+- type: Hosts
+  url: hosts/theneo-hosts.yml
+- type: Vendors
+  url: vendors/theneo-vendors.yml
+- type: Packages
+  url: packages/theneo-packages.yml
+- type: SignUp
+  url: https://app.theneo.io/signup
+- type: PrivacyPolicy
+  url: https://www.theneo.io/privacy-terms
+- type: GettingStarted
+  url: https://app.theneo.io/theneo/quickstart/theneo-quickstart-guide/quickstart
+- type: DeveloperPortal
+  url: https://www.theneo.io/developer-portal
+- type: APIReference
+  url: https://www.theneo.io/api-reference
+- type: Website
+  url: https://www.theneo.io/
+- type: PostmanWorkspace
+  url: https://www.postman.com/kinlaneapi/theneo/overview
+- type: AgenticAccess
+  url: agentic-access/theneo-agentic-access.yml
+- type: TrustCenter
+  url: security/theneo-trust-center.yml
+- type: DomainSecurity
+  url: security/theneo-domain-security.yml
+- type: Authentication
+  url: authentication/theneo-authentication.yml
+- type: LinkedIn
+  url: https://www.linkedin.com/company/theneoinc
+- name: GitHub Organization
+  url: https://github.com/Theneo-Inc
+  type: GitHubOrganization
+- name: Theneo CLI & SDK (theneo-tools)
+  url: https://github.com/Theneo-Inc/theneo-tools
+  type: SDKs
+- name: Theneo GitHub Action (api-documentation)
+  url: https://github.com/Theneo-Inc/api-documentation
+  type: GitHubAction
+- name: Cartlis - AI-Powered API Governance Agent
+  url: https://github.com/Theneo-Inc/Cartlis
+  type: Repository
+- name: Theneo User Guide
+  url: https://app.theneo.io/theneo/quickstart/theneo-quickstart-guide
+  type: Documentation
+- name: Theneo FAQ
+  url: https://app.theneo.io/theneo/quickstart/faq-2
+  type: FAQ
+- name: Theneo Pricing
+  url: https://www.theneo.io/pricing
+  type: Pricing
+- name: Theneo Blog
+  url: https://www.theneo.io/blog
+  type: Blog
+- name: Theneo Security
+  url: https://www.theneo.io/security
+  type: Security
+- name: Sign Up
+  url: https://app.theneo.io/signup
+  type: Signup
+- name: Book a Demo
+  url: https://calendly.com/theneo/theneo-demo
+  type: Demo
+
 apis:
 - aid: theneo:theneo-import-api
   name: Theneo Import API
@@ -167,16 +326,7 @@ apis:
     url: rate-limits/theneo-rate-limits.yml
   - type: FinOps
     url: finops/theneo-finops.yml
-name: Theneo
-tags:
-- API Documentation
-- Developer Portal
-- Developer Tools
-- Documentation Platform
-- Artificial Intelligence
-- AI Copilot
-- MCP
-- Platform
+
 tags_raw:
 - API Documentation
 - Developer Portal
@@ -186,98 +336,18 @@ tags_raw:
 - AI Co-Pilot
 - MCP
 - Platform
-kind: contract
-deliveryModel:
-  model: saas
-  license_evidence:
-    not_product:
-    - theneo-inc/cartlis
-  open_source: unknown
-  commercial: true
-  callable_host: true
-  label: Hosted service · you call their endpoint
-  confidence: low
-  source:
-  - openapi
-  - pricing
-  - repository-not-product
-  generated: '2026-09-25'
-  method: derived
-accessModel:
-  pricing: paid
-  onboarding: unknown
-  trial: false
-  try_now: false
-  public: false
-  label: Paid
-  confidence: medium
-  source:
-  - plans
-  - authentication
-  - security
-  generated: '2026-09-03'
-  method: derived
-image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/icons/theneo.png
-access: 3rd-Party
-created: '2025-01-08'
-modified: '2026-05-22'
-position: Consuming
-description: >-
-  Beautiful, up-to-date docs without the effort. Theneo is an AI-native API documentation and developer portal platform
-  that auto-generates interactive docs from OpenAPI, Swagger, Postman, GraphQL, gRPC, SOAP/WSDL, and AsyncAPI
-  specifications. Its AI Co-pilot can fully generate, enhance, or stay out of the way of human-authored content, while
-  Ask AI Bot, MCP server integration, llms.txt support, smart changelogs, and the Elva API management platform extend
-  the same surface to AI agents. Used by 15,000+ teams including Ticketmaster, Corpay, and SimilarWeb; backed by Y
-  Combinator; SOC 2 Type II, ISO 27001, ISO 9001, and GDPR compliant.
-maintainers:
-- FN: Kin Lane
-  email: kin@apievangelist.com
-specificationVersion: '0.23'
-common:
-- type: Website
-  url: https://www.theneo.io/
-- type: PostmanWorkspace
-  url: https://www.postman.com/kinlaneapi/theneo/overview
-- type: AgenticAccess
-  url: agentic-access/theneo-agentic-access.yml
-- type: TrustCenter
-  url: security/theneo-trust-center.yml
-- type: DomainSecurity
-  url: security/theneo-domain-security.yml
-- type: Authentication
-  url: authentication/theneo-authentication.yml
-- type: LinkedIn
-  url: https://www.linkedin.com/company/theneoinc
-- name: GitHub Organization
-  url: https://github.com/Theneo-Inc
-  type: GitHubOrganization
-- name: Theneo CLI & SDK (theneo-tools)
-  url: https://github.com/Theneo-Inc/theneo-tools
-  type: SDKs
-- name: Theneo GitHub Action (api-documentation)
-  url: https://github.com/Theneo-Inc/api-documentation
-  type: GitHubAction
-- name: Cartlis - AI-Powered API Governance Agent
-  url: https://github.com/Theneo-Inc/Cartlis
-  type: Repository
-- name: Theneo User Guide
-  url: https://app.theneo.io/theneo/quickstart/theneo-quickstart-guide
-  type: Documentation
-- name: Theneo FAQ
-  url: https://app.theneo.io/theneo/quickstart/faq-2
-  type: FAQ
-- name: Theneo Pricing
-  url: https://www.theneo.io/pricing
-  type: Pricing
-- name: Theneo Blog
-  url: https://www.theneo.io/blog
-  type: Blog
-- name: Theneo Security
-  url: https://www.theneo.io/security
-  type: Security
-- name: Sign Up
-  url: https://app.theneo.io/signup
-  type: Signup
-- name: Book a Demo
-  url: https://calendly.com/theneo/theneo-demo
-  type: Demo
+
+x-coverage:
+  state: unreadable
+  reason: js-rendered-docs
+  detail: Docs at https://docs.theneo.io/openapi.json return HTML instead of a machine‑readable spec.
+  evidence:
+    - url: https://docs.theneo.io/openapi.json
+      status: 200
+  checked: '2026-10-04'
+x-enrichment:
+  date: '2026-10-04'
+  status: enriched
+  artifacts_added: 18
+  pass: modular-v1
+  engine: identity=local,contract=local,surfaces=local,docs=local,regulatory=local

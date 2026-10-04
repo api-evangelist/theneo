@@ -151,6 +151,53 @@ paths:
                 $ref: '#/components/schemas/Error'
 components:
   schemas:
+    ChangeUserAccessRequest:
+      type: object
+      required:
+      - role
+      properties:
+        role:
+          type: string
+          enum:
+          - viewer
+          - editor
+          - admin
+          description: The new access role for the user.
+    SuccessResponse:
+      type: object
+      properties:
+        success:
+          type: boolean
+          description: Whether the operation was successful.
+        message:
+          type: string
+          description: A message describing the result.
+    Error:
+      type: object
+      properties:
+        error:
+          type: string
+          description: Error type or code.
+        message:
+          type: string
+          description: A human-readable error message.
+    ShareProjectRequest:
+      type: object
+      required:
+      - email
+      properties:
+        email:
+          type: string
+          format: email
+          description: The email address of the user to share the project with.
+        role:
+          type: string
+          enum:
+          - viewer
+          - editor
+          - admin
+          description: The access role to assign to the user.
+          default: viewer
     ProjectUser:
       type: object
       properties:
@@ -171,53 +218,6 @@ components:
         name:
           type: string
           description: The name of the user.
-    ChangeUserAccessRequest:
-      type: object
-      required:
-      - role
-      properties:
-        role:
-          type: string
-          enum:
-          - viewer
-          - editor
-          - admin
-          description: The new access role for the user.
-    Error:
-      type: object
-      properties:
-        error:
-          type: string
-          description: Error type or code.
-        message:
-          type: string
-          description: A human-readable error message.
-    SuccessResponse:
-      type: object
-      properties:
-        success:
-          type: boolean
-          description: Whether the operation was successful.
-        message:
-          type: string
-          description: A message describing the result.
-    ShareProjectRequest:
-      type: object
-      required:
-      - email
-      properties:
-        email:
-          type: string
-          format: email
-          description: The email address of the user to share the project with.
-        role:
-          type: string
-          enum:
-          - viewer
-          - editor
-          - admin
-          description: The access role to assign to the user.
-          default: viewer
   securitySchemes:
     apiKey:
       type: apiKey

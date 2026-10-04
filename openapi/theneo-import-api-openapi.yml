@@ -65,24 +65,6 @@ paths:
                 $ref: '#/components/schemas/Error'
 components:
   schemas:
-    Error:
-      type: object
-      properties:
-        error:
-          type: string
-          description: Error type or code.
-        message:
-          type: string
-          description: A human-readable error message.
-    SuccessResponse:
-      type: object
-      properties:
-        success:
-          type: boolean
-          description: Whether the operation was successful.
-        message:
-          type: string
-          description: A message describing the result.
     ImportSpecificationRequest:
       type: object
       properties:
@@ -103,6 +85,24 @@ components:
           - merge
           description: The import strategy to use. "endpoints" imports only endpoints, "overwrite" replaces the existing spec, "append" adds to the existing spec, and "merge" merges with the existing spec.
           default: overwrite
+    Error:
+      type: object
+      properties:
+        error:
+          type: string
+          description: Error type or code.
+        message:
+          type: string
+          description: A human-readable error message.
+    SuccessResponse:
+      type: object
+      properties:
+        success:
+          type: boolean
+          description: Whether the operation was successful.
+        message:
+          type: string
+          description: A message describing the result.
   securitySchemes:
     apiKey:
       type: apiKey
