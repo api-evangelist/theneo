@@ -177,6 +177,7 @@ tags:
 - AI Copilot
 - MCP
 - Platform
+- Documentation
 tags_raw:
 - API Documentation
 - Developer Portal
@@ -186,6 +187,7 @@ tags_raw:
 - AI Co-Pilot
 - MCP
 - Platform
+- Documentation
 kind: contract
 deliveryModel:
   model: saas
@@ -234,6 +236,9 @@ maintainers:
   email: kin@apievangelist.com
 specificationVersion: '0.23'
 common:
+- type: CapabilityMap
+  url: capabilities/theneo-capability-edges.yml
+  name: Theneo Business Capability Map
 - type: Website
   url: https://www.theneo.io/
 - type: PostmanWorkspace
