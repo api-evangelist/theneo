@@ -236,6 +236,12 @@ maintainers:
   email: kin@apievangelist.com
 specificationVersion: '0.23'
 common:
+- type: Plans
+  url: plans/theneo-plans-pricing.yml
+- type: RateLimits
+  url: rate-limits/theneo-rate-limits.yml
+- type: FinOps
+  url: finops/theneo-finops.yml
 - type: CapabilityMap
   url: capabilities/theneo-capability-edges.yml
   name: Theneo Business Capability Map
