@@ -138,6 +138,15 @@ paths:
                 $ref: '#/components/schemas/Error'
 components:
   schemas:
+    SuccessResponse:
+      type: object
+      properties:
+        success:
+          type: boolean
+          description: Whether the operation was successful.
+        message:
+          type: string
+          description: A message describing the result.
     Project:
       type: object
       properties:
@@ -167,15 +176,15 @@ components:
           type: string
           format: date-time
           description: The timestamp when the project was last updated.
-    SuccessResponse:
+    Error:
       type: object
       properties:
-        success:
-          type: boolean
-          description: Whether the operation was successful.
+        error:
+          type: string
+          description: Error type or code.
         message:
           type: string
-          description: A message describing the result.
+          description: A human-readable error message.
     CreateProjectRequest:
       type: object
       required:
@@ -203,15 +212,6 @@ components:
         publish:
           type: boolean
           description: Whether to publish the project immediately after creation.
-    Error:
-      type: object
-      properties:
-        error:
-          type: string
-          description: Error type or code.
-        message:
-          type: string
-          description: A human-readable error message.
   securitySchemes:
     apiKey:
       type: apiKey

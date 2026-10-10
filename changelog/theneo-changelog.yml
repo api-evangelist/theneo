@@ -1,0 +1,17 @@
+generated: '2026-10-10'
+method: searched
+generator: extract-docs-artifacts.py (local)
+source: https://www.theneo.io/api-changelog
+sources:
+- https://www.theneo.io/api-changelog
+- https://docs.theneo.io/release-notes/2026-release-notes-or-theneo-changelog/september
+entries:
+- breaking: false
+  highlights:
+  - The September release introduces a redesigned notifications experience, a new CLI command for validating documentation projects before you
+    import them, and proper documentation of OAuth2 and OpenID Connect authentication from OpenAPI specs.
+  - It also makes the API changelog cleaner and more accurate, adds per-page indexing control to the Developer Portal, and fixes several issues
+    with SEO, tabs, and published changelogs.
+  date: '2026-09-01'
+note: The pages do not specify a versioning scheme or a current version number; only a dated September release note is listed.
+docs: https://www.theneo.io/api-changelog

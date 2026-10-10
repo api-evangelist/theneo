@@ -42,15 +42,6 @@ paths:
                 $ref: '#/components/schemas/Error'
 components:
   schemas:
-    Error:
-      type: object
-      properties:
-        error:
-          type: string
-          description: Error type or code.
-        message:
-          type: string
-          description: A human-readable error message.
     Workspace:
       type: object
       properties:
@@ -63,6 +54,15 @@ components:
         slug:
           type: string
           description: The URL-friendly slug of the workspace.
+    Error:
+      type: object
+      properties:
+        error:
+          type: string
+          description: Error type or code.
+        message:
+          type: string
+          description: A human-readable error message.
   securitySchemes:
     apiKey:
       type: apiKey

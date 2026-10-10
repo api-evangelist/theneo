@@ -73,6 +73,8 @@ maintainers:
 specificationVersion: '0.23'
 
 common:
+- type: ChangeLog
+  url: changelog/theneo-changelog.yml
 - type: Spectral
   url: rules/theneo-rules.yml
 - type: Spectral
@@ -346,8 +348,8 @@ x-coverage:
       status: 200
   checked: '2026-10-04'
 x-enrichment:
-  date: '2026-10-04'
+  date: '2026-10-10'
   status: enriched
-  artifacts_added: 18
+  artifacts_added: 26
   pass: modular-v1
   engine: identity=local,contract=local,surfaces=local,docs=local,regulatory=local

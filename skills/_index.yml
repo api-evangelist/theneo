@@ -1,0 +1,17 @@
+generated: '2026-10-04'
+method: generated
+generator: extract-docs-artifacts.py skills (local)
+source: openapi/theneo-projects-api-openapi.yml
+skills:
+- file: skills/theneo-create-project.md
+  name: theneo-create-project
+  api: openapi/theneo-projects-api-openapi.yml
+  operations:
+  - addNewProject
+  - getProjectById
+- file: skills/theneo-publish-and-preview.md
+  name: theneo-publish-and-preview
+  api: openapi/theneo-publishing-api-openapi.yml
+  operations:
+  - publishProject
+  - getPreviewProjectLink

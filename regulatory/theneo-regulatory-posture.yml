@@ -1,0 +1,28 @@
+generated: '2026-10-05'
+method: probed
+source: https://www.theneo.io/privacy-terms
+signals:
+  data_subject_request:
+    - source: https://www.theneo.io/privacy-terms
+      http_status: 200
+      fetched: true
+      quote: "If your personal data appears in a customer's content, the customer is responsible for responding to your requests; you may also contact us at hello@theneo.io and we will refer your request appropriately."
+      note: handling of data subject requests via customer or direct contact
+  subprocessors:
+    - source: https://www.theneo.io/privacy-terms
+      http_status: 200
+      fetched: true
+      quote: "We share personal data only with: service providers and sub-processors that support functions such as hosting, payment processing, support, and analytics, under contractual confidentiality and data protection obligations (listed in Annex III of our Data Processing Agreement)."
+      note: lists use of subprocessors
+  data_retention:
+    - source: https://www.theneo.io/privacy-terms
+      http_status: 200
+      fetched: true
+      quote: "We retain only limited billing references (such as your email and a Stripe customer/subscription identifier) to manage your subscription."
+      note: retention of billing references
+  ai_transparency:
+    - source: https://www.theneo.io/privacy-terms
+      http_status: 200
+      fetched: true
+      quote: "Content submitted through AI features is not used to train general-purpose AI models, with one exception: Theneo Inc. may use documentation you have chosen to ..."
+      note: AI features not used for model training except specific case

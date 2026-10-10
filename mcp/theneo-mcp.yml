@@ -1,0 +1,6 @@
+generated: "2026-10-04"
+method: derived
+source: "https://docs.theneo.io/mcp"
+deployment:
+  mode: none
+  verified: derived

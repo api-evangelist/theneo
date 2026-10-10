@@ -1,4 +1,4 @@
-generated: '2026-07-11'
+generated: '2026-10-10'
 method: searched
 probe: true
 source: https://www.theneo.io/security
@@ -13,4 +13,5 @@ evidence:
   - soc 2
   - soc2
   - iso 27001
+  - iso/iec 27001
   - gdpr

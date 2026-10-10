@@ -1,0 +1,45 @@
+# Theneo
+
+> Theneo is an AI-powered API documentation platform and developer portal where humans and AI agents ship API docs together. Teams generate complete documentation from any API spec, then publish API references, user guides, changelogs, and private per-customer portals — with real-time co-editing, an Ask AI answer bot, MCP server support, and llms.txt built in. Trusted by 18,000+ teams from startups to the Fortune 500, and backed by Y Combinator, Mercury, and Atlassian. SOC 2 Type II, ISO 27001 & 9001, and GDPR compliant, with EU data residency and self-hosting available.
+
+## Product
+- [Theneo home](https://www.theneo.io): The all-in-one developer portal for API references, guides, changelogs, and private customer portals.
+- [Developer Portal](https://www.theneo.io/developer-portal): Authenticated, branded portals where each customer signs in and sees only the APIs, guides, and SDKs that apply to them.
+- [API Reference](https://www.theneo.io/api-reference): Interactive, auto-generated API reference docs from an OpenAPI/Swagger spec.
+- [API Explorer & Changelog](https://www.theneo.io/api-changelog): In-browser API testing plus automated changelogs that flag breaking changes in your API.
+- [Ask AI](https://www.theneo.io/ask-ai): AI answer bot that gives developers direct answers from your docs instead of search results.
+- [Enterprise](https://www.theneo.io/enterprise): Security, compliance, SSO, audit logs, white-label, and self-hosting for regulated and growing teams.
+- [Security](https://www.theneo.io/security): SOC 2 Type II, ISO 27001 & 9001, GDPR, EU data residency, and self-hosting details.
+- [Pricing](https://www.theneo.io/pricing): Plans and pricing tiers.
+
+## Documentation
+- [Theneo Documentation](https://docs.theneo.io): Product documentation, quickstart guides, tutorials, and how-tos (hosted on Theneo itself).
+- [Theneo Release Notes](https://docs.theneo.io/release-notes/): Theneo's own product changelog and release history.
+
+## Comparisons
+- [Theneo vs Mintlify](https://www.theneo.io/theneo-vs-mintlify): How Theneo compares to Mintlify on AI credit pricing, the free-to-enterprise gap, MDX and Git editing friction, hosting, and migration.
+- [Theneo vs ReadMe](https://www.theneo.io/theneo-vs-readme): How Theneo compares to ReadMe on pricing tiers, multi-project support, MCP, and migration.
+- [Theneo vs Redocly](https://www.theneo.io/theneo-vs-redocly): How Theneo compares to Redocly on the Git pull request workflow, per-seat and per-page pricing, project limits, and collaboration for non-engineers.
+- [Theneo vs Stoplight](https://www.theneo.io/theneo-vs-stoplight): How Theneo compares to Stoplight on AI documentation, collaboration, pricing, and the SmartBear API Hub transition.
+
+## Templates
+- [Developer Portal Templates](https://www.theneo.io/developer-portal-templates): Gallery of ready-made developer portal and API catalog templates.
+
+## Guides and articles
+- [10 Best API Documentation Platforms for 2026](https://www.theneo.io/blog/10-best-api-documentation-platforms-for-2026): Feature and pricing comparison of the leading API documentation platforms, broken down by team size.
+- [How llms.txt and MCP Are Changing API Discovery](https://www.theneo.io/blog/llms-txt-mcp-api-discovery): How llms.txt and MCP create a discovery layer for APIs, and how to make an API agent-readable.
+- [Agent Retrieval vs MCP](https://www.theneo.io/blog/agent-retrieval-vs-mcp-documentation-teams): What agent retrieval solves, what MCP solves, and why documentation teams usually need both.
+- [Why API Specs Break AI Agents](https://www.theneo.io/blog/why-api-specs-break-ai-agents-mcp-launch): The six spec-quality gaps that break agents, and how to close them before an MCP launch.
+- [Turn Your API into an MCP Server](https://www.theneo.io/blog/how-to-turn-your-api-into-an-mcp-server-straight-from-your-openapi-spec-no-code): Generating a ready-to-run MCP server from an existing OpenAPI spec, with no code to maintain.
+- [Configure llms-full.txt and Markdown Export](https://www.theneo.io/blog/configure-llms-full-txt-markdown-export-theneo): Enabling and validating machine-readable documentation exports in Theneo.
+- [API Documentation Maintenance Checklist](https://www.theneo.io/blog/api-documentation-maintenance-checklist): Weekly, per-release, and quarterly tasks for keeping API documentation accurate.
+
+## Resources
+- [Blog](https://www.theneo.io/blog): Articles on API documentation, developer portals, MCP, llms.txt, and API management.
+- [FAQ](https://www.theneo.io/faq): Common questions about the platform.
+- [Careers](https://www.theneo.io/careers): Open roles at Theneo.
+- [Book a demo](https://www.theneo.io/book-demo): Schedule a product walkthrough.
+
+## Legal
+- [Privacy & Terms](https://www.theneo.io/privacy-terms): Privacy policy and terms of service.
+- [Data Processing Agreement](https://www.theneo.io/data-processing-agreement): DPA for customers.

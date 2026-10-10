@@ -1,0 +1,18 @@
+generated: '2026-10-10'
+method: probed
+generator: harvest-packages.py
+source: registry metadata endpoints (registry.npmjs.org, pypi.org, rubygems.org, api.nuget.org, packagist.org, crates.io)
+ownership_rule: 'official: true only when the registry metadata (homepage, repository, author, URLs) names the provider''s domain (agentic-access/theneo-agentic-access.yml,
+  authentication/theneo-authentication.yml, calendly.com, conformance/theneo-conformance.yml, data-model/theneo-data-model.yml, errors/theneo-problem-types.yml,
+  hosts/theneo-hosts.yml, linkedin.com, llms/theneo-llms.txt, packages/theneo-packages.yml, postman.com, rules/theneo-jsonschema-spectral-rules.yml,
+  rules/theneo-rules.yml, security/theneo-domain-security.yml, security/theneo-trust-center.yml, skills/_index.yml, theneo.io, vendors/theneo-vendors.yml,
+  well-known/theneo-api-security.txt, well-known/theneo-calendly-security.txt, well-known/theneo-well-known.yml) or its accepted GitHub org.'
+packages:
+- name: theneo
+  registry: npm
+  url: https://www.npmjs.com/package/theneo
+  language: JavaScript
+  official: true
+  version: 1.1.0
+  published: '2023-09-21'
+  evidence: metadata names theneo.io

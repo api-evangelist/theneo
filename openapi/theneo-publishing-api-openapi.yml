@@ -86,15 +86,6 @@ paths:
                 $ref: '#/components/schemas/Error'
 components:
   schemas:
-    Error:
-      type: object
-      properties:
-        error:
-          type: string
-          description: Error type or code.
-        message:
-          type: string
-          description: A human-readable error message.
     PublishResponse:
       type: object
       properties:
@@ -112,6 +103,15 @@ components:
           type: string
           format: uri
           description: The preview URL for the project documentation.
+    Error:
+      type: object
+      properties:
+        error:
+          type: string
+          description: Error type or code.
+        message:
+          type: string
+          description: A human-readable error message.
   securitySchemes:
     apiKey:
       type: apiKey

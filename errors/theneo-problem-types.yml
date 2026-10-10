@@ -1,0 +1,38 @@
+generated: '2026-10-10'
+method: derived
+generator: derive-problem-types.py
+source:
+- openapi/theneo-import-api-openapi.yml
+- openapi/theneo-projects-api-openapi.yml
+- openapi/theneo-publishing-api-openapi.yml
+- openapi/theneo-users-api-openapi.yml
+- openapi/theneo-workspaces-api-openapi.yml
+format: custom
+envelope:
+  media_type: application/json
+  schema: Error
+coverage:
+  operations: 11
+  statuses_declared: 3
+problems:
+- status: 400
+  title: Bad Request
+  description: Bad request. Invalid parameters.
+  operations: 4
+  media_types:
+  - application/json
+  schema: Error
+- status: 401
+  title: Unauthorized
+  description: Unauthorized. Invalid or missing API key.
+  operations: 11
+  media_types:
+  - application/json
+  schema: Error
+- status: 404
+  title: Not Found
+  description: Project not found.
+  operations: 8
+  media_types:
+  - application/json
+  schema: Error
