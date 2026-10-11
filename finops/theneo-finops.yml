@@ -6,6 +6,7 @@ specification: FinOps Framework
 specificationVersion: '1.0'
 provider: Theneo
 providerId: theneo
+name: Theneo API FinOps
 publisherName: Theneo
 serviceCategory: API
 created: '2026-05-04'
