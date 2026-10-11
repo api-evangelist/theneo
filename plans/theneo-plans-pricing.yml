@@ -1,33 +1,122 @@
-generated: '2026-10-10'
-name: Theneo Pricing
+# Pricing transcribed from the provider's own page — see provenance. Numbers are quoted, not derived.
+generated: '2026-10-07'
 method: searched
 source: https://www.theneo.io/pricing
-audience: developer-api
-pricing_basis: per-month
+sources:
+- https://www.theneo.io/pricing
+provenance:
+  tool: all/0-working/economics/harvest_pricing.py
+  run: 20261007T104522
+  grounding: every price_text was found verbatim in the fetched page text
+audience: business-product
+pricing_basis: tiered-subscription
+delivery:
+  delivery: managed+licensed
+  method: page
+  read: '2026-10-07'
+  evidence: Full-platform self-hosting
+  managed_tier: Business
 published: true
+note: Annual vs monthly toggle shows two price sets; Enterprise is custom and includes self-hosting (sold,
+  not open source).
+plan_count: 6
+currency: USD
 plans:
-  - name: Starter
-    description: Free tier with limited projects and team members
-    price_text: "Free"
-    price: "Free"
-    limits:
-      - "1 public project"
-      - "Up to 2 private projects"
-      - "Up to 20 team members"
-      - "Up to 100 GPT-powered search results for your readers"
-      - "Up to 2000 TheneoAl: API Doc Builder Assistance"
-  - name: Business
-    description: Paid tier with more projects and team members
-    price_text: "$120 /month/workspace"
-    price: 120
-    limits:
-      - "Up to 7 projects"
-      - "Up to 50 team members"
-      - "Unlimited use of searchAI"
-      - "Unlimited use of TheneoAl"
-      - "Custom branding and SEO settings"
+- name: Starter Package
+  price_text: Free
+  period: month
+  unit: workspace
+  included_quota: 1 public project, up to 2 private projects, up to 20 team members, up to 100 GPT-powered
+    search results, up to 2000 TheneoAI assistance
+- name: Business (annual)
+  price_text: $120 /month/workspace
+  price: 120
+  currency: USD
+  period: month
+  unit: workspace
+  included_quota: Up to 7 projects, up to 50 team members, unlimited searchAI and TheneoAI
+- name: Growth (annual)
+  price_text: $400 /month/workspace
+  price: 400
+  currency: USD
+  period: month
+  unit: workspace
+  included_quota: Up to 20 developer portals
+- name: Business (monthly)
+  price_text: $150 /month
+  price: 150
+  currency: USD
+  period: month
+  unit: workspace
+  included_quota: Up to 7 projects, up to 50 team members
+- name: Growth (monthly)
+  price_text: $450 /month
+  price: 450
+  currency: USD
+  period: month
+  unit: workspace
+  included_quota: Up to 20 developer hubs
+- name: Enterprise
+  price_text: Custom
+  period: none
+  included_quota: Self-hosting, SAML SSO & OAuth 2.0, custom integrations
+rate_limit_statements:
+- Up to 100 GPT-powered search results for your readers
+- 'Up to 2000 TheneoAl: API Doc Builder Assistance'
+- API endpoints Up to 2000 Up to 5000 Up to 10000 Unlimited
+x-canonical:
+  generated: '2026-10-08'
+  vocabulary: all/0-working/economics/plans-canonical.yml
+  models:
+  - hybrid
+  - metered
+  units:
+  - object
+  plans:
+  - name: Starter Package
+    access: other
+    model: metered
+    model_how: derived
+    units:
+    - object
+    periods:
+    - month
+  - name: Business (annual)
+    access: other
+    model: hybrid
+    model_how: derived
+    units:
+    - object
+    periods:
+    - month
+  - name: Growth (annual)
+    access: other
+    model: hybrid
+    model_how: derived
+    units:
+    - object
+    periods:
+    - month
+  - name: Business (monthly)
+    access: other
+    model: hybrid
+    model_how: derived
+    units:
+    - object
+    periods:
+    - month
+  - name: Growth (monthly)
+    access: other
+    model: hybrid
+    model_how: derived
+    units:
+    - object
+    periods:
+    - month
   - name: Enterprise
-    description: Custom pricing for large organizations
-    price_text: "Contact sales"
-    price: "Contact sales"
-    limits: []
+    access: other
+    model: unstated
+    model_how: derived
+    units: []
+    periods:
+    - none

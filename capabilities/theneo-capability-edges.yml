@@ -1,0 +1,43 @@
+slug: theneo
+provider: Theneo
+generated_by: planning/capability-mapping/scripts/classify_capabilities.py
+model: claude-opus-5
+frame:
+- Software & Technology
+min_confidence: 0.7
+capability_model:
+  source: https://github.com/vincentmakes/turbo-ea-capabilities
+  license: CC-BY-4.0
+  attribution: Turbo EA Capabilities by Vincent Verdet — Turbo EA, https://github.com/vincentmakes/turbo-ea-capabilities,
+    CC BY 4.0
+  notice: NOTICE
+edge_count: 3
+edges:
+- tag: Publishing
+  spec_file: theneo-publishing-api-openapi.yml
+  capability_id: BC-4270.30
+  capability_id_l1: BC-4270
+  capability_name: Developer Portal Management
+  confidence: 0.82
+  evidence: POST /projects/{projectId}/publish  publishProject; GET /projects/{projectId}/preview  getPreviewProjectLink
+  reason: Publishing and previewing generated API documentation sites is the core of Developer Portal
+    Management (documentation and interactive references).
+- tag: Import
+  spec_file: theneo-import-api-openapi.yml
+  capability_id: BC-4270.30
+  capability_id_l1: BC-4270
+  capability_name: Developer Portal Management
+  confidence: 0.8
+  evidence: POST /projects/{projectId}/import  importApiSpecification  Import API Specification
+  reason: Theneo generates interactive API documentation from OpenAPI/Swagger specs; importing a spec
+    feeds the developer documentation portal — Developer Portal Management.
+- tag: Projects
+  spec_file: theneo-projects-api-openapi.yml
+  capability_id: BC-4270.30
+  capability_id_l1: BC-4270
+  capability_name: Developer Portal Management
+  confidence: 0.7
+  evidence: The Theneo API provides programmatic access to manage API documentation projects, workspaces,
+    user access, and API specification imports
+  reason: Projects are API documentation projects on a developer-docs/portal platform; CRUD on them is
+    stewardship of documentation sites. Slight genericity of 'Projects' lowers confidence.
